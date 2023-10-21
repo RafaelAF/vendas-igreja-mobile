@@ -37,7 +37,7 @@ type ActionOpenVendas = {
     }
 }
 
-type ListActions = ActionOpenMenu | ActionOpenCadastro | ActionOpenListagem | ActionOpenPagamento | ActionOpenSelecionados | ActionOpenVendas;
+export type ListActions = ActionOpenMenu | ActionOpenCadastro | ActionOpenListagem | ActionOpenPagamento | ActionOpenSelecionados | ActionOpenVendas;
 
 
 export const modaisReducer = (state: ModaisStateType, action: ListActions) => {

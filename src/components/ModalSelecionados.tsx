@@ -1,16 +1,37 @@
-import { ButtonConfirm,Text , FooterContainer, HeaderContainer, ListContent, ListItem, Modal, ModalContainer, Title, Title2, ControlsContainer, ButtonsContainer } from "../styles"
+import { 
+    ButtonConfirm,
+    Text , 
+    FooterContainer, 
+    HeaderContainer, 
+    ListContent, 
+    ListItem, 
+    Modal, 
+    ModalContainer, 
+    Title, 
+    Title2, 
+    ControlsContainer 
+} from "../styles"
 
 import IconClose from '../assets/X.svg'
+import { useContext } from "react"
+import { ModaisContext } from "../contexts/modaisContext"
 
 
 export const ModalSelecionados = () => {
+
+    const modaisCtx = useContext(ModaisContext)
+
+    const handleCloseModal = () => {
+        modaisCtx?.dispatch({type: "OPEN_SELECIONADOS", payload: {acao: false}})
+    }
+
     return (
         <>
             <ModalContainer>
                 <Modal>
                     <HeaderContainer>
                         <span></span>
-                        <img src={IconClose} style={{width: "32px"}} alt="" />
+                        <img onClick={handleCloseModal} src={IconClose} style={{width: "32px"}} alt="" />
                     </HeaderContainer>
                     <Title2>Produtos selecionados</Title2>
                     <ListContent>

@@ -5,19 +5,31 @@ import { Text } from "../../styles"
 import IconClose from '../../assets/X.svg'
 import IconPencil from '../../assets/PencilLine.svg'
 import IconCash from '../../assets/cashIcon.svg'
+import { useContext } from "react"
+import { ModaisContext } from "../../contexts/modaisContext"
+import { ModalCadastro } from "../ModalCadastroDeProduto"
 
 export const MenuModal = () => {
+    
+    const modaisCtx = useContext(ModaisContext)
+
+    const handleCloseMenu = () => {
+        modaisCtx?.dispatch({type: "OPEN_MENU", payload: {acao: false}})
+    }
+
     return (
         <MenuContainer>
             <MenuBox>
                 <HeaderContainer>
                     <span></span>
-                    <img src={IconClose} style={{width: "32px"}} alt="" />
+                    <img onClick={handleCloseMenu} src={IconClose} style={{width: "32px"}} alt="" />
                 </HeaderContainer>
                 <MenuList>
-                    <MenuItem>
+                    <MenuItem onClick={()=>{
+                            modaisCtx?.dispatch({type: "OPEN_CADASTRO", payload: {acao: true}})
+                        }}>
                         <Text>Cadastrar produtos</Text>
-                        <img src={IconPencil} alt="" />
+                        <img  src={IconPencil} alt="" />
                     </MenuItem>
                     <MenuItem>
                         <Text>Controle de vendas</Text>
@@ -25,6 +37,8 @@ export const MenuModal = () => {
                     </MenuItem>
                 </MenuList>
             </MenuBox>
+            {/* <ModalCadastro /> */}
+            {modaisCtx?.modais.cadastroProduto && modaisCtx.modais.menu && <ModalCadastro />}
         </MenuContainer>
     )
 }
