@@ -142,7 +142,7 @@ export const ButtonConfirm = styled.button`
 
 
 export const ModalContainer = styled.div`
-    position: absolute;
+    position: fixed;
     z-index: 2;
     right: 0;
     width: 100%;
