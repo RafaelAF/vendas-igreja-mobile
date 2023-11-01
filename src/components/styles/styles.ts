@@ -68,3 +68,14 @@ export const ButtonCadastro = styled.button`
     background: #45C043;
     color: #fff;
 `;
+
+export const ListContainer = styled.div`
+    border-radius: 8px;
+    background: rgba(117, 98, 203, 0.20);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    /* gap: 10px; */
+    width: 100%;
+    height: 97%;
+`;

@@ -17,6 +17,12 @@ export const MenuModal = () => {
         modaisCtx?.dispatch({type: "OPEN_MENU", payload: {acao: false}})
     }
 
+    const handleDeleteProductData = () => {
+        if(confirm("Deseja apagar os produtos cadastrados?")){
+            localStorage.setItem("NewProducts", "")
+        }
+    }
+
     return (
         <MenuContainer>
             <MenuBox>
@@ -34,6 +40,11 @@ export const MenuModal = () => {
                     <MenuItem>
                         <Text>Controle de vendas</Text>
                         <img src={IconCash} alt="" />
+                    </MenuItem>
+                    <MenuItem onClick={()=>{
+                        handleDeleteProductData()
+                    }}>
+                        <Text>Limpar Banco de dados</Text>
                     </MenuItem>
                 </MenuList>
             </MenuBox>

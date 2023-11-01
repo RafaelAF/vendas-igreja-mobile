@@ -11,31 +11,40 @@ import {
   ListContent, 
   ButtonConfirm, Text, ControlsContainer, ButtonsContainer } from "./styles"
 
-import MenuIcon from './assets/List.svg'
-// import { ModaisStateType } from "./@types/modais"
+import { useContext, useEffect, useState } from "react"
+
 import { MenuModal } from "./components/MenuModal"
-// import { useReducer } from "react"
-// import { modaisReducer } from "./reducers/modaisReducer"
 import { ModalSelecionados } from "./components/ModalSelecionados"
 import { ModaisContext } from "./contexts/modaisContext"
-import { useContext } from "react"
-// import { useState } from "react"
+
+import MenuIcon from './assets/List.svg'
+import { Product } from "./@types/produto"
 
 function App() {
   
   const modaisCtx = useContext(ModaisContext)
-  // const [modais, dispatch] = useReducer(modaisReducer, modaisState)
 
-
+  const [listProducts, setListProducts] = useState<Product[]>([])
+  const [total, setTotal] = useState(0)
 
   const handleOpenMenu = () => {
-    // modaisCtx?.dispatch({type: "OPEN_MENU", payload: {acao: true}})
     modaisCtx?.dispatch({type: "OPEN_MENU", payload: {acao: true}})
   }
 
   const handleOpenSelecionados = () => {
     modaisCtx?.dispatch({type: "OPEN_SELECIONADOS", payload: {acao: true}})
   }
+
+  useEffect(()=>{
+    const products = localStorage.getItem("NewProducts")
+
+    if(products){
+      setListProducts(JSON.parse(products))
+    }
+
+    // Para pular o build
+    setTotal(0)
+  },[])
 
   return (
     <ContainerApp>
@@ -48,16 +57,20 @@ function App() {
             <ListContainer>
               <Title2>Lista de Produtos</Title2>
               <ListContent>
-                <ListItem>
-                  <Text>Pastel de Flango</Text>
-                  <ControlsContainer>
-                    <span>R$ 4,00</span>
-                    <ButtonsContainer><button>-</button>0<button>+</button></ButtonsContainer>
-                  </ControlsContainer>
-                </ListItem>
+                {listProducts.map((item)=>(
+                  <ListItem>
+                    <Text>{item.name}</Text>
+                    <ControlsContainer>
+                      <span>R$ {(item.price).toFixed(2)}</span>
+                      <ButtonsContainer><button>-</button>0<button>+</button></ButtonsContainer>
+                    </ControlsContainer>
+                  </ListItem>
+                ))
+                }
+                
               </ListContent>
               <FooterContainer>
-                <Title>Total: R$300,00</Title>
+                <Title>Total: R${total.toFixed(2)}</Title>
                 <ButtonConfirm onClick={handleOpenSelecionados}>VER PEDIDOS</ButtonConfirm>
               </FooterContainer>
             </ListContainer>
