@@ -82,6 +82,7 @@ export const ListContent = styled.div`
 export const ListItem = styled.div`
     border: 1px solid rgba(0, 0, 0, 0.05);
     background: rgba(117, 90, 203, 0.05);
+    color: #000;
     margin: 0 10px;
     padding: 13px 15px;
     display: flex;
