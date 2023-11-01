@@ -11,6 +11,7 @@ export const ButtonToggle = styled.button`
     border-radius: 5px;
     border: 1px solid rgba(0, 0, 0, 0.20);
     background: rgba(217, 217, 217, 0.20);
+    color: #000;
     &:hover{
         border-color: #8F64D4;
     }
@@ -33,6 +34,7 @@ export const CadastroCointainer = styled.div`
 export const LabelContent = styled.label`
     display: flex;
     flex-direction: column;
+    color: #000;
 `;
 
 export const InputGroup = styled.div`
