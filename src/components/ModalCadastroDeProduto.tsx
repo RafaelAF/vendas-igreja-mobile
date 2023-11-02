@@ -32,8 +32,8 @@ export const ModalCadastro = () => {
     const modaisCrx = useContext(ModaisContext) 
 
     const [name, setName] = useState('')
-    const [price, setPrice] = useState(0)
-    const [qtd, setQtd] = useState(0)
+    const [price, setPrice] = useState('')
+    const [qtd, setQtd] = useState('')
 
     const [listProducts, setListProducts] = useState<Product[]>([])
 
@@ -43,12 +43,19 @@ export const ModalCadastro = () => {
     }
 
     const handleSaveProduct = () => {
-        if(name && price > 0 && qtd > 0){
-            saveProduct(name, price, qtd)
-            setName('')
-            setPrice(0)
-            setQtd(0)
+        if(parseFloat(price) && parseInt(qtd)){
+            if(name && parseFloat(price) > 0 && parseInt(qtd) > 0){
+                saveProduct(name, parseFloat(price), parseInt(qtd))
+                setName('')
+                setPrice('')
+                setQtd('')
+            }else{
+                alert("Preencha todos os campos")
+            }
+        }else{
+            alert("Preencha com valores validos")
         }
+        
     }
 
     const saveProduct = (name: string, price: number, qtd: number) => {
@@ -59,14 +66,14 @@ export const ModalCadastro = () => {
 
             const hasProduct = products.filter(item => item.name == name ? true : false)
             if(hasProduct.length == 0){
-                localStorage.setItem("NewProducts", JSON.stringify([...products, {id: products.length + 1, name, price, qtd}]))
+                localStorage.setItem("NewProducts", JSON.stringify([...products, {id: new Date().getTime(), name, price, qtd}]))
             }else{
                 alert("Ja tem no cadastro")
             }
         }
         else{ // salvar pela primeira vez
             const products: Product[] = []
-            localStorage.setItem("NewProducts", JSON.stringify([...products, {id: products.length + 1, name, price, qtd}]))
+            localStorage.setItem("NewProducts", JSON.stringify([...products, {id: new Date().getTime(), name, price, qtd}]))
         }
     }
 
@@ -103,13 +110,13 @@ export const ModalCadastro = () => {
                                         <LabelContent>
                                             Preco 
                                             <InputCustom value={price} placeholder="Digite apenas numeros" type="number" onChange={(e)=>{
-                                                setPrice(Number(e.target.value))
+                                                setPrice(e.target.value)
                                             }} />
                                         </LabelContent>
                                         <LabelContent>
                                             Quantidade
                                             <InputCustom value={qtd} placeholder="" type="number" onChange={(e)=>{
-                                                setQtd(Number(e.target.value))
+                                                setQtd(e.target.value)
                                             }} />
                                         </LabelContent>
                                     </InputGroup>

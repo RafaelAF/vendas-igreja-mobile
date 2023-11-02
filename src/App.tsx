@@ -19,13 +19,17 @@ import { ModaisContext } from "./contexts/modaisContext"
 
 import MenuIcon from './assets/List.svg'
 import { Product } from "./@types/produto"
+import { EmptyList } from "./components/EmptyList"
+import { useSelected } from "./hooks/useSelected"
 
 function App() {
   
   const modaisCtx = useContext(ModaisContext)
 
   const [listProducts, setListProducts] = useState<Product[]>([])
-  const [total, setTotal] = useState(0)
+  
+
+  
 
   const handleOpenMenu = () => {
     modaisCtx?.dispatch({type: "OPEN_MENU", payload: {acao: true}})
@@ -43,8 +47,10 @@ function App() {
     }
 
     // Para pular o build
-    setTotal(0)
+
   },[])
+
+  const selectItem = useSelected(listProducts)
 
   return (
     <ContainerApp>
@@ -62,21 +68,28 @@ function App() {
                     <Text>{item.name}</Text>
                     <ControlsContainer>
                       <span>R$ {(item.price).toFixed(2)}</span>
-                      <ButtonsContainer><button>-</button>0<button>+</button></ButtonsContainer>
+                      <ButtonsContainer><button onClick={()=>{
+                        selectItem.handleMinusClick(Number(item.id))
+                      }}>-</button>{selectItem.quantidades[item.id] ?? 0}<button onClick={()=>{
+                        selectItem.handlePlusClick(Number(item.id))
+                      }}>+</button></ButtonsContainer>
                     </ControlsContainer>
                   </ListItem>
                 ))
                 }
-                
+                {listProducts.length == 0 &&
+                  <EmptyList />
+                }
               </ListContent>
               <FooterContainer>
-                <Title>Total: R${total.toFixed(2)}</Title>
-                <ButtonConfirm onClick={handleOpenSelecionados}>VER PEDIDOS</ButtonConfirm>
+                <Title>Total: R${(selectItem.total).toFixed(2)}</Title>
+                {selectItem.total > 0 &&  <ButtonConfirm onClick={handleOpenSelecionados}>VER PEDIDOS</ButtonConfirm>}
+                
               </FooterContainer>
             </ListContainer>
           </Container>
           {modaisCtx?.modais.menu && <MenuModal />}
-          {modaisCtx?.modais.selecionados && <ModalSelecionados />}
+          {modaisCtx?.modais.selecionados && <ModalSelecionados selecao={selectItem.selectedList} total={selectItem.total} />}
         </BlocoApp>
     </ContainerApp>
   )
