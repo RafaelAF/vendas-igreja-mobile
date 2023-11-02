@@ -19,7 +19,7 @@ export const ModaisProvider = ({children}: Props) => {
 
     const modaisState: ModaisStateType = {
         menu: false,
-        cadastroProduto: true,
+        cadastroProduto: false,
         pagamento: false,
         listagem: false,
         selecionados: false,

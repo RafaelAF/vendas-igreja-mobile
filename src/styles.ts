@@ -78,6 +78,43 @@ export const ListContent = styled.div`
     max-height: calc(100vh - 200px);
 `;
 
+export const TableContainer = styled(ListContent)`
+    background-color: #eee;
+    overflow: auto;
+    border-radius: 8px;
+    height: 100%;
+    width: 95%;
+    margin: 0 auto;
+    table{
+        /* border: 1px solid #000; */
+        width: 500px;
+        border-collapse: collapse;
+        thead{
+            tr{
+                background-color: #999;
+                th{
+                    color: #fff;
+                }
+            }
+        }
+        tbody{
+            tr{
+                td{
+                    text-align: center;
+                    color: #000;
+                    div{
+                        display: flex;
+                        gap: 5px;
+                        span::after{
+                            content: ",";
+                        }
+                    }
+                }
+            }
+        }
+    }
+`;
+
 
 export const ListItem = styled.div`
     border: 1px solid rgba(0, 0, 0, 0.05);
@@ -144,7 +181,7 @@ export const ButtonConfirm = styled.button`
 
 export const ModalContainer = styled.div`
     position: fixed;
-    z-index: 2;
+    z-index: 3;
     right: 0;
     width: 100%;
     height: 100%;

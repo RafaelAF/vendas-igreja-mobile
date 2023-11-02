@@ -27,6 +27,7 @@ export const usePagamento = () => {
 
     const finishPagamento = (selectedList: ProdutoSelecionado[], valorPago: number, troco: number, metodoPagamento: TypePaymentMethod) => {
         const dataVendas = localStorage.getItem("Vendas")
+        const totalVendido = localStorage.getItem("TotalVendido")
 
         const venda: Venda = {
             id: new Date().getTime(),
@@ -39,13 +40,19 @@ export const usePagamento = () => {
 
         if(dataVendas){
             const vendas = JSON.parse(dataVendas)
+            console.log("Valor da venda", valorPago - troco)
             vendas.push(venda)
             localStorage.setItem("Vendas", JSON.stringify(vendas))
         }else{
             const vendas = []
             vendas.push(venda)
+            console.log("Valor da venda", valorPago - troco)
             localStorage.setItem("Vendas", JSON.stringify(vendas))
-            // console.log("venda feita", venda)
+        }
+        if(totalVendido){
+            localStorage.setItem("TotalVendido", JSON.stringify(Number(totalVendido)+ (valorPago - troco)))
+        }else{
+            localStorage.setItem("TotalVendido", JSON.stringify(valorPago - troco))
         }
         // console.log("venda feita", venda)
         // salvar a venda aqui

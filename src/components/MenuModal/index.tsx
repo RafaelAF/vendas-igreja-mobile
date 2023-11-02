@@ -22,6 +22,12 @@ export const MenuModal = () => {
             localStorage.setItem("NewProducts", "")
         }
     }
+    const handleDeleteVendasData = () => {
+        if(confirm("Deseja apagar as vendas cadastradas?")){
+            localStorage.setItem("Vendas", "")
+            localStorage.setItem("TotalVendas", "")
+        }
+    }
 
     return (
         <MenuContainer>
@@ -37,7 +43,9 @@ export const MenuModal = () => {
                         <Text>Cadastrar produtos</Text>
                         <img  src={IconPencil} alt="" />
                     </MenuItem>
-                    <MenuItem>
+                    <MenuItem onClick={()=>{
+                        modaisCtx?.dispatch({type: "OPEN_VENDAS", payload: {acao: true}})
+                    }}>
                         <Text>Controle de vendas</Text>
                         <img src={IconCash} alt="" />
                     </MenuItem>
@@ -46,10 +54,16 @@ export const MenuModal = () => {
                     }}>
                         <Text>Apagar Produtos cadastrados</Text>
                     </MenuItem>
+                    <MenuItem onClick={()=>{
+                        handleDeleteVendasData()
+                    }}>
+                        <Text>Apagar Vendas</Text>
+                    </MenuItem>
+                    
                 </MenuList>
             </MenuBox>
-            {/* <ModalCadastro /> */}
-            {modaisCtx?.modais.cadastroProduto && modaisCtx.modais.menu && <ModalCadastro />}
+            
+            {modaisCtx?.modais.cadastroProduto && <ModalCadastro />}
         </MenuContainer>
     )
 }

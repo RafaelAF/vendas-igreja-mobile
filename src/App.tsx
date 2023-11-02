@@ -21,6 +21,7 @@ import MenuIcon from './assets/List.svg'
 import { Product } from "./@types/produto"
 import { EmptyList } from "./components/EmptyList"
 import { useSelected } from "./hooks/useSelected"
+import { ModalVendas } from "./components/ModalVendas"
 
 function App() {
   
@@ -88,6 +89,7 @@ function App() {
               </FooterContainer>
             </ListContainer>
           </Container>
+          {modaisCtx?.modais.vendas && <ModalVendas />}
           {modaisCtx?.modais.menu && <MenuModal />}
           {modaisCtx?.modais.selecionados && <ModalSelecionados closeAll={selectItem} selecao={selectItem.selectedList} total={selectItem.total} />}
         </BlocoApp>

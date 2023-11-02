@@ -22,6 +22,17 @@ export const ButtonToggleSelected = styled(ButtonToggle)`
     background: #EBDBFF;
 `;
 
+export const ContainerTotalValor = styled.div`
+    border-radius: 5px;
+    border: 1px solid #888;
+    background: transparent;
+    color: #000;
+    width: 100%;
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+`;
+
 export const CadastroContainer = styled.div`
     width: 85%;
     margin: 0 auto;
