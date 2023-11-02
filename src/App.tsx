@@ -89,7 +89,7 @@ function App() {
             </ListContainer>
           </Container>
           {modaisCtx?.modais.menu && <MenuModal />}
-          {modaisCtx?.modais.selecionados && <ModalSelecionados selecao={selectItem.selectedList} total={selectItem.total} />}
+          {modaisCtx?.modais.selecionados && <ModalSelecionados closeAll={selectItem} selecao={selectItem.selectedList} total={selectItem.total} />}
         </BlocoApp>
     </ContainerApp>
   )

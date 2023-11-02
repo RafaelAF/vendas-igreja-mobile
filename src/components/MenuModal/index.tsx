@@ -44,7 +44,7 @@ export const MenuModal = () => {
                     <MenuItem onClick={()=>{
                         handleDeleteProductData()
                     }}>
-                        <Text>Limpar Banco de dados</Text>
+                        <Text>Apagar Produtos cadastrados</Text>
                     </MenuItem>
                 </MenuList>
             </MenuBox>

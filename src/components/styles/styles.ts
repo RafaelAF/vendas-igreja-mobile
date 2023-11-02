@@ -22,7 +22,7 @@ export const ButtonToggleSelected = styled(ButtonToggle)`
     background: #EBDBFF;
 `;
 
-export const CadastroCointainer = styled.div`
+export const CadastroContainer = styled.div`
     width: 85%;
     margin: 0 auto;
     padding: 13px 15px;
@@ -80,4 +80,25 @@ export const ListContainer = styled.div`
     /* gap: 10px; */
     width: 100%;
     height: 97%;
+`;
+
+export const PaymentContainer = styled.div`
+    /* background-color: red; */
+    display: flex;
+    gap: 12px;
+    /* justify-content: space-between; */
+`;
+
+export const PaymentItem = styled.div`
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #999;
+    /* background: rgba(217, 217, 217, 0.20); */
+    background-color: #d9d9d9;
+    padding: 8px 15px;
+`;
+
+export const PaymentItemActive = styled(PaymentItem)`
+    border: 1px solid #8F64D4; 
+    background-color: #EBDBFF; 
 `;

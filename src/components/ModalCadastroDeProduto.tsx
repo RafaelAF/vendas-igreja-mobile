@@ -17,7 +17,7 @@ import {
     ButtonCadastro, 
     ButtonToggle, 
     ButtonToggleSelected, 
-    CadastroCointainer, 
+    CadastroContainer, 
     InputCustom, 
     InputGroup, 
     LabelContent, 
@@ -99,7 +99,7 @@ export const ModalCadastro = () => {
                     }
                     <ListContent>
                             {modaisCrx?.modais.cadastroProduto && !modaisCrx.modais.listagem &&
-                                <CadastroCointainer>
+                                <CadastroContainer>
                                     <LabelContent>
                                         Nome do Produto
                                         <InputCustom value={name} placeholder="Nome do produto" type="text" onChange={(e)=>{
@@ -123,7 +123,7 @@ export const ModalCadastro = () => {
                                     <ButtonCadastro onClick={()=>{
                                         handleSaveProduct()
                                     }}>Cadastrar</ButtonCadastro>
-                                </CadastroCointainer>
+                                </CadastroContainer>
                             }
                             {modaisCrx?.modais.cadastroProduto && modaisCrx.modais.listagem &&
                                 <>

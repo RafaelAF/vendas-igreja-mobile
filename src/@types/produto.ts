@@ -7,7 +7,7 @@ export type Product = {
 
 
 export type ProdutoSelecionado = {
-    id: number,
+    id: number, // timestamp
     name: string,
     precoUni: number,
     qtdEscolhida: number

@@ -16,21 +16,27 @@ import IconClose from '../assets/X.svg'
 import { useContext } from "react"
 import { ModaisContext } from "../contexts/modaisContext"
 import { ProdutoSelecionado } from "../@types/produto"
+import { ModalPagamento } from "./ModalPagamento"
 
 
 type Props = {
     selecao: ProdutoSelecionado[],
-    total: number
+    total: number,
+    closeAll: any
 }
 
 
-export const ModalSelecionados = ({selecao, total}: Props) => {
+export const ModalSelecionados = ({selecao, total, closeAll}: Props) => {
 
     const modaisCtx = useContext(ModaisContext)
     console.log("selectedList", selecao)
 
     const handleCloseModal = () => {
         modaisCtx?.dispatch({type: "OPEN_SELECIONADOS", payload: {acao: false}})
+    }
+
+    const handleOpenModalPagamento = () => {
+        modaisCtx?.dispatch({type: "OPEN_PAGAMENTO", payload: {acao: true}})
     }
 
     return (
@@ -55,10 +61,11 @@ export const ModalSelecionados = ({selecao, total}: Props) => {
                     </ListContent>
                     <FooterContainer>
                         <Title>Total: R${total.toFixed(2)}</Title>
-                        <ButtonConfirm>CONFIRMAR</ButtonConfirm>
+                        <ButtonConfirm  onClick={handleOpenModalPagamento}>CONFIRMAR</ButtonConfirm>
                     </FooterContainer>
                 </Modal>
             </ModalContainer>
+            {modaisCtx?.modais.pagamento && <ModalPagamento closeAll={closeAll} selecao={selecao} total={total} />}
         </>
     )
 }

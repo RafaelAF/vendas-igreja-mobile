@@ -161,3 +161,9 @@ export const Modal = styled.div`
     border-radius: 8px;
     position: relative;
 `;
+
+export const MiniModal = styled(Modal)`
+    height: 410px;
+    top: -80px;
+    /* transition: 300ms linear; */
+`;

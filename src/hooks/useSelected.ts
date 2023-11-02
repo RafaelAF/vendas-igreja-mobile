@@ -111,6 +111,7 @@ export const useSelected = (produtos: Product[]) => {
         total,
         setQuantidades,
         handleMinusClick,
-        handlePlusClick
+        handlePlusClick,
+        setSelectedList
     }
 }

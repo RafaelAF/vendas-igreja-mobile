@@ -9,14 +9,14 @@
 
 // import IconClose from '../assets/X.svg'
 
-export const Listagem = () => {
+export const ModalListagem = () => {
     // const handleCloseModal = () => {
         
     // }
 
     return (
         <>
-            asdasd
+            
         </>
     )
 }
