@@ -11,6 +11,7 @@ import { ProdutoSelecionado } from "../@types/produto"
 type Props = {
     selecao: ProdutoSelecionado[],
     total: number,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     closeAll: any
 }
 
@@ -28,9 +29,9 @@ export const ModalPagamento = ({selecao, total, closeAll}: Props) => {
 
     const handleFinishSell = () => {
         if(parseFloat(valorPago) && payment.paymentMethod.method){
-            console.log("Finalizando compra", valorPago, payment.paymentMethod.method)
-            console.log("Troco", parseFloat(valorPago) - total)
-            console.log("Salvar venda...")
+            // console.log("Finalizando compra", valorPago, payment.paymentMethod.method)
+            // console.log("Troco", parseFloat(valorPago) - total)
+            // console.log("Salvar venda...")
 
             payment.finishPagamento(selecao, parseFloat(valorPago), troco, payment.paymentMethod)
             payment.setLoad(true)
@@ -45,7 +46,7 @@ export const ModalPagamento = ({selecao, total, closeAll}: Props) => {
         }else{
             setTroco(0)
         }
-    },[valorPago])
+    },[valorPago, total])
 
 
     useEffect(()=>{
@@ -55,6 +56,7 @@ export const ModalPagamento = ({selecao, total, closeAll}: Props) => {
                 // modaisCtx?.dispatch({})
             }, 2000)
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[payment.pago])
 
     const handleCloseAll = () => {

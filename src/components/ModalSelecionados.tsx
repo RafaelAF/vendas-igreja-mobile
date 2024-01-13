@@ -22,6 +22,7 @@ import { ModalPagamento } from "./ModalPagamento"
 type Props = {
     selecao: ProdutoSelecionado[],
     total: number,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     closeAll: any
 }
 

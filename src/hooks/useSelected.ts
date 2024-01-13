@@ -3,6 +3,7 @@ import { ProdutoSelecionado, Product } from "../@types/produto";
 
 export const useSelected = (produtos: Product[]) => {
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [quantidades, setQuantidades] = useState<any>({})
     const [selectedList, setSelectedList] = useState<ProdutoSelecionado[]>([])
     const [total, setTotal] = useState(0)

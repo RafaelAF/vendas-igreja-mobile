@@ -49,6 +49,7 @@ export const ModalCadastro = () => {
                 setName('')
                 setPrice('')
                 setQtd('')
+                alert("Produto cadastrado com sucesso!")
             }else{
                 alert("Preencha todos os campos")
             }
@@ -136,6 +137,7 @@ export const ModalCadastro = () => {
                                                     <ButtonsContainer>- qtd. {item.qtd}</ButtonsContainer>
                                                 </ControlsContainer>
                                             </ListItem>
+                                            {item.id}
                                         </ListContent>
                                     ))}
                                 </>
