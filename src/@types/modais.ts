@@ -4,5 +4,6 @@ export type ModaisStateType = {
     listagem: boolean,
     pagamento: boolean,
     selecionados: boolean,
-    vendas: boolean
+    vendas: boolean,
+    edit: boolean
   }

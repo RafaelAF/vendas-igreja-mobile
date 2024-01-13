@@ -27,6 +27,7 @@ import { ModaisContext } from "../contexts/modaisContext"
 
 import { Product } from "../@types/produto"
 
+
 export const ModalCadastro = () => {
 
     const modaisCrx = useContext(ModaisContext) 
@@ -129,7 +130,10 @@ export const ModalCadastro = () => {
                             {modaisCrx?.modais.cadastroProduto && modaisCrx.modais.listagem &&
                                 <>
                                     {listProducts.map((item) => (
-                                        <ListContent key={item.id}>
+                                        <ListContent key={item.id} onClick={()=>{
+                                            modaisCrx.dispatch({type: "OPEN_EDIT", payload: {acao: true}})
+                                            localStorage.setItem("product_edit", JSON.stringify(item))
+                                        }}>
                                             <ListItem>
                                                 <Text>{item.name}</Text>
                                                 <ControlsContainer>
@@ -137,7 +141,6 @@ export const ModalCadastro = () => {
                                                     <ButtonsContainer>- qtd. {item.qtd}</ButtonsContainer>
                                                 </ControlsContainer>
                                             </ListItem>
-                                            {item.id}
                                         </ListContent>
                                     ))}
                                 </>
@@ -166,6 +169,7 @@ export const ModalCadastro = () => {
                         </SelectButtons>
                     </FooterContainer>
                 </Modal>
+                
             </ModalContainer>
         </>
     )

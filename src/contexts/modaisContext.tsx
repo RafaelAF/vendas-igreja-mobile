@@ -23,7 +23,8 @@ export const ModaisProvider = ({children}: Props) => {
         pagamento: false,
         listagem: false,
         selecionados: false,
-        vendas: false
+        vendas: false,
+        edit: false, 
       }
 
     const [modais, dispatch] = useReducer(modaisReducer, modaisState)

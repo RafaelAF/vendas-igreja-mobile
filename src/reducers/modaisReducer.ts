@@ -37,7 +37,14 @@ type ActionOpenVendas = {
     }
 }
 
-export type ListActions = ActionOpenMenu | ActionOpenCadastro | ActionOpenListagem | ActionOpenPagamento | ActionOpenSelecionados | ActionOpenVendas;
+type ActionOpenEdit = {
+    type: 'OPEN_EDIT',
+    payload: {
+        acao: boolean
+    }
+}
+
+export type ListActions = ActionOpenMenu | ActionOpenCadastro | ActionOpenListagem | ActionOpenPagamento | ActionOpenSelecionados | ActionOpenVendas | ActionOpenEdit;
 
 
 export const modaisReducer = (state: ModaisStateType, action: ListActions) => {
@@ -54,6 +61,8 @@ export const modaisReducer = (state: ModaisStateType, action: ListActions) => {
             return {...state, selecionados: action.payload.acao}
         case "OPEN_VENDAS":
             return {...state, vendas: action.payload.acao}
+        case "OPEN_EDIT":
+            return {...state, edit: action.payload.acao}
         default:
             return state
     }

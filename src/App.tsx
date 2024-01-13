@@ -22,6 +22,7 @@ import { Product } from "./@types/produto"
 import { EmptyList } from "./components/EmptyList"
 import { useSelected } from "./hooks/useSelected"
 import { ModalVendas } from "./components/ModalVendas"
+import { ModalEdit } from "./components/ModalEdit"
 
 function App() {
   
@@ -90,6 +91,7 @@ function App() {
             </ListContainer>
           </Container>
           {modaisCtx?.modais.vendas && <ModalVendas />}
+          {modaisCtx?.modais.edit && <ModalEdit />}
           {modaisCtx?.modais.menu && <MenuModal />}
           {modaisCtx?.modais.selecionados && <ModalSelecionados closeAll={selectItem} selecao={selectItem.selectedList} total={selectItem.total} />}
         </BlocoApp>
