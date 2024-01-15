@@ -3,9 +3,12 @@ import { HeaderContainer, MiniModal, ModalContainer, Title } from "../styles"
 import { ModaisContext } from "../contexts/modaisContext"
 
 import IconClose from '../assets/X.svg'
-import { ButtonCadastro, CadastroContainer, InputCustom, LabelContent, PaymentContainer, PaymentItem, PaymentItemActive } from "./styles/styles"
+import { ButtonCadastro, ButtonConfirmTickets, CadastroContainer, InputCustom, LabelContent, PaymentContainer, PaymentItem, PaymentItemActive, SelectTicketsContainer, SpinnerContainer, TicketItem } from "./styles/styles"
 import { usePagamento } from "../hooks/usePagamento"
 import { ProdutoSelecionado } from "../@types/produto"
+
+import loadIcon from '../assets/CircleNotch.svg'
+
 
 
 type Props = {
@@ -15,11 +18,28 @@ type Props = {
     closeAll: any
 }
 
+type Operation = 'PLUS' | 'MINUS'
+
 export const ModalPagamento = ({selecao, total, closeAll}: Props) => {
     const modaisCtx = useContext(ModaisContext)
 
     const [valorPago, setValorPago] = useState('')
     const [troco, setTroco] = useState(0)
+
+    const [totalTicket, setTotalTicket] = useState(0)
+
+    const [ticket, setTicket] = useState({
+        ticket1: 0,
+        ticket2: 0,
+        ticket3: 0,
+        ticket4: 0,
+        ticket5: 0
+    })
+
+    // const [canSele] = useState(true)
+
+    const [hasAllTickets, setHasAllTickets] = useState(false)
+
 
     const handleCloseModal = () => {
         modaisCtx?.dispatch({type: "OPEN_PAGAMENTO", payload: {acao: false}})
@@ -59,6 +79,20 @@ export const ModalPagamento = ({selecao, total, closeAll}: Props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[payment.pago])
 
+    useEffect(()=>{
+        setTotalTicket(total)
+
+        
+    },[total])
+
+    useEffect(()=>{
+        if(totalTicket == 0){
+            setHasAllTickets(true)
+        }else{
+            setHasAllTickets(false)
+        }
+    },[totalTicket])
+
     const handleCloseAll = () => {
         closeAll.setSelectedList([])
         closeAll.setQuantidades({})
@@ -67,19 +101,88 @@ export const ModalPagamento = ({selecao, total, closeAll}: Props) => {
         // selecao = []
     }
 
+    const handleChoseTicket = (value: number, operation: Operation) => {
+        switch (value) {
+            case 1:
+                if(operation == 'PLUS'){
+                    if(totalTicket > 0){
+                        setTicket({...ticket, ticket1: ticket.ticket1 + 1})
+                        updateRestValue(totalTicket, value, operation)
+                    }
+                }else{
+                    if(ticket.ticket1 > 0){
+                        setTicket({...ticket, ticket1: ticket.ticket1 - 1})
+                        updateRestValue(totalTicket, value, operation)
+                    }
+                }
+                
+                return;
+            case 2:
+                if(operation == 'PLUS'){
+                    setTicket({...ticket, ticket2: ticket.ticket2 + 1})
+                }else{
+                    if(ticket.ticket2 > 0){
+                        setTicket({...ticket, ticket2: ticket.ticket2 - 1})
+                    }
+                }
+                return;
+            case 3:
+                if(operation == 'PLUS'){
+                    setTicket({...ticket, ticket3: ticket.ticket3 + 1})
+                }else{
+                    if(ticket.ticket3 > 0){
+                        setTicket({...ticket, ticket3: ticket.ticket3 - 1}) 
+                    }
+                }
+                return;
+            case 4:
+                if(operation == 'PLUS'){
+                    setTicket({...ticket, ticket4: ticket.ticket4 + 1})
+                }else{
+                    if(ticket.ticket4 > 0){
+                        setTicket({...ticket, ticket4: ticket.ticket4 - 1})
+                    }
+                }
+                return;
+            case 5:
+                if(operation == 'PLUS'){
+                    setTicket({...ticket, ticket5: ticket.ticket5 + 1})
+                }else{
+                    if(ticket.ticket5 > 0){
+                        setTicket({...ticket, ticket5: ticket.ticket5 - 1})
+                    }
+                }
+                return;
+            default:
+                return;
+        }
+    }
+
+    const updateRestValue = (amountValue: number, ticketValue: number, operation: Operation) => {
+        console.log(amountValue, ticketValue, operation)
+        if(operation == "PLUS"){
+            if(totalTicket > 0){
+                setTotalTicket(totalTicket - ticketValue)
+            }
+        }else{
+            setTotalTicket(totalTicket + ticketValue)
+        }
+        
+    }
+
     return (
         <ModalContainer>
             <MiniModal>
                 <HeaderContainer>
                         <span></span>
-                        {!payment.load && !payment.pago &&
+                        {!payment.load && !payment.pago && !payment.selectTicket &&
                             <img onClick={handleCloseModal} src={IconClose} style={{width: "32px"}} alt="" />
                         }
-                        {!payment.load && payment.pago &&
+                        {!payment.load && payment.pago && payment.selectTicket &&
                             <img onClick={handleCloseAll} src={IconClose} style={{width: "32px"}} alt="" />
                         }
                 </HeaderContainer>
-                {!payment.pago && !payment.load && 
+                {!payment.pago && !payment.load && !payment.selectTicket && 
                     <CadastroContainer>
                         <LabelContent>
                             <Title>Forma de pagamento</Title>
@@ -122,10 +225,87 @@ export const ModalPagamento = ({selecao, total, closeAll}: Props) => {
                         }}>Finalizar</ButtonCadastro>
                     </CadastroContainer>
                 }
-                {payment.pago && payment.load && 
-                    <div>Carregando ...</div>
+                {payment.pago && payment.load && !payment.selectTicket && 
+                    <SpinnerContainer>
+                        <img src={loadIcon} alt="" />
+                    </SpinnerContainer>
                 }
-                {payment.pago && !payment.load && 
+                {payment.pago && !payment.load && !payment.selectTicket && 
+                    <>  
+                        <SelectTicketsContainer>
+                            <Title style={{width: '50%'}}>Selecao de  tickets Valor restante</Title>
+                            <Title>R$ {totalTicket}</Title>
+                            {/* <Title>R$ {troco}</Title> */}
+                        </SelectTicketsContainer>
+                        <SelectTicketsContainer>
+                            <TicketItem>TICKET 1</TicketItem>
+                            <div>
+                                <TicketItem onClick={()=>{
+                                    handleChoseTicket(1, "MINUS")
+                                }}>-</TicketItem>
+                                <span>{ticket.ticket1}</span>
+                                <TicketItem onClick={()=>{
+                                    handleChoseTicket(1, "PLUS")
+                                }}>+</TicketItem>
+                            </div>
+                        </SelectTicketsContainer>
+                        <SelectTicketsContainer>
+                            <TicketItem>TICKET 2</TicketItem>
+                            <div>
+                                <TicketItem onClick={()=>{
+                                    handleChoseTicket(2, "MINUS")
+                                }}>-</TicketItem>
+                                <span>{ticket.ticket2}</span>
+                                <TicketItem onClick={()=>{
+                                    handleChoseTicket(2, "PLUS")
+                                }}>+</TicketItem>
+                            </div>
+                        </SelectTicketsContainer>
+                        <SelectTicketsContainer>
+                            <TicketItem>TICKET 3</TicketItem>
+                            <div>
+                                <TicketItem onClick={()=>{
+                                    handleChoseTicket(3, "MINUS")
+                                }}>-</TicketItem>
+                                <span>{ticket.ticket3}</span>
+                                <TicketItem onClick={()=>{
+                                    handleChoseTicket(3, "PLUS")
+                                }}>+</TicketItem>
+                            </div>
+                        </SelectTicketsContainer>
+                        <SelectTicketsContainer>
+                            <TicketItem>TICKET 4</TicketItem>
+                            <div>
+                                <TicketItem onClick={()=>{
+                                    handleChoseTicket(4, "MINUS")
+                                }}>-</TicketItem>
+                                <span>{ticket.ticket4}</span>
+                                <TicketItem onClick={()=>{
+                                    handleChoseTicket(4, "PLUS")
+                                }}>+</TicketItem>
+                            </div>
+                        </SelectTicketsContainer>
+                        <SelectTicketsContainer>
+                            <TicketItem>TICKET 5</TicketItem>
+                            <div>
+                                <TicketItem onClick={()=>{
+                                    handleChoseTicket(5, "MINUS")
+                                }}>-</TicketItem>
+                                <span>{ticket.ticket5}</span>
+                                <TicketItem onClick={()=>{
+                                    handleChoseTicket(5, "PLUS")
+                                }}>+</TicketItem>
+                            </div>
+                        </SelectTicketsContainer>
+                        <SelectTicketsContainer>
+                            <ButtonConfirmTickets disabled={!hasAllTickets} onClick={()=>{
+                                payment.setSelectTicket(true)
+                            }}>Finalizar</ButtonConfirmTickets>
+                        </SelectTicketsContainer>
+                    </>
+                    
+                }
+                {payment.pago && !payment.load && payment.selectTicket && 
                     <div>Muito Obrigado</div>
                 }
             </MiniModal>

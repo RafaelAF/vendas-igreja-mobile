@@ -51,7 +51,7 @@ export const ModalVendas = () => {
                                         <tr key={index}>
                                             {/* <td>22:53</td> */}
                                             <td>
-                                                {new Date(item.id).getHours()}:{new Date(item.id).getMinutes()}
+                                                {new Date(item.id).getHours()}:{new Date(item.id).getMinutes() < 10 ? `0${new Date(item.id).getMinutes()}` : new Date(item.id).getMinutes()}
                                             </td>
                                             <td>
                                                 <div>

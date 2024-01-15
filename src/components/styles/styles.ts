@@ -113,3 +113,72 @@ export const PaymentItemActive = styled(PaymentItem)`
     border: 1px solid #8F64D4; 
     background-color: #EBDBFF; 
 `;
+
+export const SpinnerContainer = styled.div`
+    width: 100%;
+    margin-top: 50px;
+    /* height: 100%; */
+    /* background-color: red; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img{
+        animation-name: rotation;
+        animation-duration: 3s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+    }
+    @keyframes rotation {
+        0%{
+            transform: rotate(0deg);
+        }
+        50%{
+            transform: rotate(180deg);
+        }
+        100%{
+            transform: rotate(360deg);
+        }
+    }
+`;
+
+export const SelectTicketsContainer = styled.div`
+    display: flex;
+    justify-content: space-between;
+    margin: 0 15px;
+
+    div{
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+    &:not(:nth-child(7)){
+        margin-bottom: 5px;
+    }
+`;
+
+export const TicketItem = styled.button`
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.20);
+    background: rgba(217, 217, 217, 0.20);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: 0;
+    font-weight: 400;
+`;
+
+export const ButtonConfirmTickets = styled.button`
+    border-radius: 4px;
+    background: #18BA53;
+    margin: 0 auto;
+    width: 100%;
+    margin-top: 20px;
+    color: #fff;
+    &:not(:disabled):hover{
+        opacity: 0.8;
+    }
+    &:disabled{
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+`;

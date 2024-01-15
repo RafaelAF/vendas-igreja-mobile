@@ -9,6 +9,16 @@ export const usePagamento = () => {
 
     const [load, setLoad] = useState(false)
 
+    const [selectTicket, setSelectTicket] = useState(false)
+
+    const [ticket, setTicket] = useState({
+        ticket1: 5,
+        ticket2: 0,
+        ticket3: 0,
+        ticket4: 0,
+        ticket5: 0
+    })
+
     const changeMethod = (metodo: TypePaymentMethod) => {
         switch (metodo.method) {
             case "pix":
@@ -40,13 +50,13 @@ export const usePagamento = () => {
 
         if(dataVendas){
             const vendas = JSON.parse(dataVendas)
-            console.log("Valor da venda", valorPago - troco)
+            // console.log("Valor da venda", valorPago - troco)
             vendas.push(venda)
             localStorage.setItem("Vendas", JSON.stringify(vendas))
         }else{
             const vendas = []
             vendas.push(venda)
-            console.log("Valor da venda", valorPago - troco)
+            // console.log("Valor da venda", valorPago - troco)
             localStorage.setItem("Vendas", JSON.stringify(vendas))
         }
         if(totalVendido){
@@ -64,8 +74,12 @@ export const usePagamento = () => {
         paymentMethod,
         pago,
         load,
+        selectTicket,
+        ticket,
         finishPagamento,
         changeMethod,
-        setLoad
+        setLoad,
+        setSelectTicket,
+        setTicket
     }
 }
