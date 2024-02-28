@@ -12,8 +12,11 @@ export const MenuContainer = styled.div`
 export const MenuBox = styled.div`
     width: 80%;
     height: 100%;
-    position: absolute;
-    right: 0;
+    position: fixed;
+    right: 25%;
+    left: 25%;
+    max-width: 425px;
+    margin: 0 auto;
     background-color: #E9E9E9;
 `;
 

@@ -195,6 +195,7 @@ export const Modal = styled.div`
     background-color: #fff;
     width: 90%;
     height: 95%;
+    max-width: 425px;
     border-radius: 8px;
     position: relative;
 `;
@@ -202,5 +203,6 @@ export const Modal = styled.div`
 export const MiniModal = styled(Modal)`
     height: 410px;
     top: -80px;
+    max-width: 350px;
     /* transition: 300ms linear; */
 `;
