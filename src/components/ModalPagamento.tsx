@@ -60,6 +60,11 @@ export const ModalPagamento = ({selecao, total, closeAll}: Props) => {
         }
     }
 
+    const checkCanReduce = (ticketValue: number, restTiticket: number) => {
+        if(restTiticket <= ticketValue) return true
+        return false
+    }
+
     useEffect(()=>{
         if(parseFloat(valorPago)){
             setTroco(parseFloat(valorPago) - total)
@@ -106,50 +111,77 @@ export const ModalPagamento = ({selecao, total, closeAll}: Props) => {
             case 1:
                 if(operation == 'PLUS'){
                     if(totalTicket > 0){
-                        setTicket({...ticket, ticket1: ticket.ticket1 + 1})
-                        updateRestValue(totalTicket, value, operation)
+                        if(checkCanReduce(totalTicket, value)){
+                            setTicket({...ticket, ticket1: ticket.ticket1 + 1})
+                            updateRestValue(totalTicket, value, operation)
+                        }
                     }
                 }else{
                     if(ticket.ticket1 > 0){
                         setTicket({...ticket, ticket1: ticket.ticket1 - 1})
                         updateRestValue(totalTicket, value, operation)
+                        console.log("VAlor aqui", value)
                     }
                 }
                 
                 return;
             case 2:
                 if(operation == 'PLUS'){
-                    setTicket({...ticket, ticket2: ticket.ticket2 + 1})
+                    if(totalTicket > 0){
+                        if(checkCanReduce(totalTicket, value)){
+                            setTicket({...ticket, ticket2: ticket.ticket2 + 1})
+                            updateRestValue(totalTicket, value, operation)
+                        }
+                    }
                 }else{
                     if(ticket.ticket2 > 0){
                         setTicket({...ticket, ticket2: ticket.ticket2 - 1})
+                        updateRestValue(totalTicket, value, operation)
                     }
                 }
                 return;
             case 3:
                 if(operation == 'PLUS'){
-                    setTicket({...ticket, ticket3: ticket.ticket3 + 1})
+                    if(totalTicket > 0){
+                        if(checkCanReduce(totalTicket, value)){
+                            setTicket({...ticket, ticket3: ticket.ticket3 + 1})
+                            updateRestValue(totalTicket, value, operation)
+                        }
+                    }
                 }else{
                     if(ticket.ticket3 > 0){
                         setTicket({...ticket, ticket3: ticket.ticket3 - 1}) 
+                        updateRestValue(totalTicket, value, operation)
                     }
                 }
                 return;
             case 4:
                 if(operation == 'PLUS'){
-                    setTicket({...ticket, ticket4: ticket.ticket4 + 1})
+                    if(totalTicket > 0){
+                        if(checkCanReduce(totalTicket, value)){
+                            setTicket({...ticket, ticket4: ticket.ticket4 + 1})
+                            updateRestValue(totalTicket, value, operation)
+                        }
+                    }
                 }else{
                     if(ticket.ticket4 > 0){
                         setTicket({...ticket, ticket4: ticket.ticket4 - 1})
+                        updateRestValue(totalTicket, value, operation)
                     }
                 }
                 return;
             case 5:
                 if(operation == 'PLUS'){
-                    setTicket({...ticket, ticket5: ticket.ticket5 + 1})
+                    if(totalTicket > 0){
+                        if(checkCanReduce(totalTicket, value)){
+                            setTicket({...ticket, ticket5: ticket.ticket5 + 1})
+                            updateRestValue(totalTicket, value, operation)
+                        }
+                    }
                 }else{
                     if(ticket.ticket5 > 0){
                         setTicket({...ticket, ticket5: ticket.ticket5 - 1})
+                        updateRestValue(totalTicket, value, operation)
                     }
                 }
                 return;
