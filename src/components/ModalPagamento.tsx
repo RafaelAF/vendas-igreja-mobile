@@ -3,11 +3,12 @@ import { HeaderContainer, MiniModal, ModalContainer, Title } from "../styles"
 import { ModaisContext } from "../contexts/modaisContext"
 
 import IconClose from '../assets/X.svg'
-import { ButtonCadastro, ButtonConfirmTickets, CadastroContainer, InputCustom, LabelContent, PaymentContainer, PaymentItem, PaymentItemActive, SelectTicketsContainer, SpinnerContainer, TicketItem } from "./styles/styles"
+import { ButtonCadastro, ButtonConfirmTickets, CadastroContainer, FinishIcon, FishTitle, InputCustom, LabelContent, PaymentContainer, PaymentItem, PaymentItemActive, SelectTicketsContainer, SpinnerContainer, TicketItem } from "./styles/styles"
 import { usePagamento } from "../hooks/usePagamento"
 import { ProdutoSelecionado } from "../@types/produto"
 
 import loadIcon from '../assets/CircleNotch.svg'
+import AprovedIcon from '../assets/PaymentAproved.svg'
 
 
 
@@ -338,7 +339,10 @@ export const ModalPagamento = ({selecao, total, closeAll}: Props) => {
                     
                 }
                 {payment.pago && !payment.load && payment.selectTicket && 
-                    <div>Muito Obrigado</div>
+                    <>
+                        <FishTitle>Muito Obrigado</FishTitle>
+                        <FinishIcon src={AprovedIcon} alt="" />
+                    </>
                 }
             </MiniModal>
         </ModalContainer>

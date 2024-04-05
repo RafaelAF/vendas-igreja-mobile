@@ -7,7 +7,7 @@
 //     Title2 
 // } from "../../styles"
 
-import { /*FooterContainer,*/ HeaderContainer, MiniModal/*, Modal*/, ModalContainer, Title2/*, Text */} from "../styles"
+import { /*FooterContainer,*/ HeaderContainer, MiniModal/*, Modal*/, ModalContainer/*, Text */} from "../styles"
 // import { ContainerTotalValor } from "./styles/styles"
 
 import IconClose from '../assets/X.svg'
@@ -15,6 +15,7 @@ import { useContext, useEffect, useState } from "react"
 import { ModaisContext } from "../contexts/modaisContext"
 import { ProductContext } from "../contexts/configProductContext"
 import { Product } from "../@types/produto"
+import { EditContainer, InputCustom, LabelContent } from "./styles/styles"
 
 export const ModalEdit = () => {
 
@@ -22,6 +23,10 @@ export const ModalEdit = () => {
     const productCtx = useContext(ProductContext)
 
     const [produto, setProduto] = useState<Product | null>(null)
+
+    const [productName, setProductName] = useState(produto?.name)
+    const [productPrice, setProductPrice] = useState(produto?.price)
+    const [productQtd, setProductQtd] = useState(produto?.qtd)
 
     useEffect(()=>{
         const data = JSON.parse(localStorage.getItem("product_edit") ?? '')
@@ -31,6 +36,16 @@ export const ModalEdit = () => {
         }
 
     }, [productCtx])
+
+    useEffect(()=>{
+        if(produto){
+            setProductName(produto.name)
+            setProductPrice(produto.price)
+            setProductQtd(produto.qtd)
+        }
+    },[produto])
+
+
 
 
     const handleCloseModal = () => {
@@ -46,14 +61,35 @@ export const ModalEdit = () => {
                         <span></span>
                         <img onClick={handleCloseModal} src={IconClose} style={{width: "32px"}} alt="" />
                     </HeaderContainer>
-                    <Title2>Configuracao de produto</Title2>
-                    {produto?.name}
-                    {/* <FooterContainer>
-                        <ContainerTotalValor>
-                            <Text>Total vendido</Text>
-                            <Text></Text>
-                        </ContainerTotalValor>
-                    </FooterContainer> */}
+                    {/* <Title2>Configuracao de produto</Title2> */}
+                    <EditContainer>
+                        <div>
+                            <LabelContent>
+                                Nome
+                                <InputCustom type="text" name="" id="" value={productName} onChange={e => {
+                                    setProductName(e.target.value)
+                                }} />
+                            </LabelContent>
+                        </div>
+                        <div>
+                            <LabelContent>
+                                Preco
+                                <InputCustom type="text" value={productPrice} onChange={e => {
+                                    setProductPrice(Number(e.target.value))
+                                }} />
+                            </LabelContent>
+                            <LabelContent >
+                                Quantidade
+                                <InputCustom type="number" value={productQtd} onChange={e => {
+                                    setProductQtd(Number(e.target.value))
+                                }} />
+                            </LabelContent>
+                        </div>
+                        <div>
+                            <button>Excluir</button>
+                            <button>Salvar</button>
+                        </div>
+                    </EditContainer>
                 </MiniModal>
             </ModalContainer>
         </>

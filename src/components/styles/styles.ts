@@ -182,3 +182,21 @@ export const ButtonConfirmTickets = styled.button`
         cursor: not-allowed;
     }
 `;
+
+export const FishTitle = styled.div`
+    display: flex;
+    justify-content: center;
+    font-size: 2rem;
+`;
+
+export const FinishIcon = styled.img`
+    display: flex;
+    margin: 15px auto 0;
+`;
+
+export const EditContainer = styled.div`
+    /* background-color: #ff00ff; */
+    height: calc(100% - 57px);
+    border-radius: 8px;
+    padding: 14px 15px;
+`;
