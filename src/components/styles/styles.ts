@@ -199,4 +199,25 @@ export const EditContainer = styled.div`
     height: calc(100% - 57px);
     border-radius: 8px;
     padding: 14px 15px;
+    position: relative;
 `;
+
+export const ButtonsEditContainer = styled.div`
+    position: absolute;
+    bottom: 47px;
+    width: 92%;
+    display: flex;
+    justify-content: space-between;
+    /* margin-top: 20px; */
+    gap: 15px;
+    & > button{
+        flex: 1;
+        color: #000;
+        &:nth-child(1){
+            background-color: #FF2E2E;
+        }
+        &:nth-child(2){
+            background-color: #45C043;
+        }
+    }
+`

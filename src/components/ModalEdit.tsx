@@ -15,12 +15,15 @@ import { useContext, useEffect, useState } from "react"
 import { ModaisContext } from "../contexts/modaisContext"
 import { ProductContext } from "../contexts/configProductContext"
 import { Product } from "../@types/produto"
-import { EditContainer, InputCustom, LabelContent } from "./styles/styles"
+import { ButtonsEditContainer, EditContainer, InputCustom, InputGroup, LabelContent } from "./styles/styles"
+import { useEditProd } from "../hooks/useEditProd"
 
 export const ModalEdit = () => {
 
     const modaisCtx = useContext(ModaisContext)
     const productCtx = useContext(ProductContext)
+
+    const { changeProduct, deleteProduct } = useEditProd()
 
     const [produto, setProduto] = useState<Product | null>(null)
 
@@ -71,10 +74,10 @@ export const ModalEdit = () => {
                                 }} />
                             </LabelContent>
                         </div>
-                        <div>
+                        <InputGroup>
                             <LabelContent>
                                 Preco
-                                <InputCustom type="text" value={productPrice} onChange={e => {
+                                <InputCustom type="number" value={productPrice} onChange={e => {
                                     setProductPrice(Number(e.target.value))
                                 }} />
                             </LabelContent>
@@ -84,11 +87,20 @@ export const ModalEdit = () => {
                                     setProductQtd(Number(e.target.value))
                                 }} />
                             </LabelContent>
-                        </div>
-                        <div>
-                            <button>Excluir</button>
-                            <button>Salvar</button>
-                        </div>
+                        </InputGroup>
+                        <ButtonsEditContainer>
+                            <button onClick={()=>{
+                                deleteProduct()
+                            }}>Excluir</button>
+                            <button onClick={ ()=>{
+                                // if(productName, productPrice, productQtd){
+                                //     changeProduct(productName, productPrice, productQtd)
+                                // }
+                                changeProduct(productName ?? '', productPrice ?? 0, productQtd ?? 0)
+
+                                
+                            }}>Salvar</button>
+                        </ButtonsEditContainer>
                     </EditContainer>
                 </MiniModal>
             </ModalContainer>
