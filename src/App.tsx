@@ -9,7 +9,7 @@ import {
   ListItem, 
   FooterContainer, 
   ListContent, 
-  ButtonConfirm, Text, ControlsContainer, ButtonsContainer, 
+ Text, ControlsContainer, ButtonsContainer, 
   FooterTitle,
   ButtonNextStep,
   MenuIconContainer} from "./styles"
@@ -20,7 +20,6 @@ import { MenuModal } from "./components/MenuModal"
 import { ModalSelecionados } from "./components/ModalSelecionados"
 import { ModaisContext } from "./contexts/modaisContext"
 
-import MenuIcon from './assets/List.svg'
 import MenuIcon2 from './assets/MenuIcon2.svg'
 import { Product } from "./@types/produto"
 import { EmptyList } from "./components/EmptyList"

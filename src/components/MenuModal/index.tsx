@@ -1,6 +1,5 @@
 import { HeaderContainer, MenuIconContainer, Title } from "../../styles"
 import { MenuBox, MenuContainer, MenuItem, MenuList, MenuText } from "./style"
-import { Text } from "../../styles"
 
 import closeIcon2 from '../../assets/closeIcon2.svg'
 // import IconPencil from '../../assets/PencilLine.svg'
