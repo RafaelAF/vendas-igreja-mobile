@@ -165,7 +165,21 @@ export const TicketItem = styled.button`
     align-items: center;
     outline: 0;
     font-weight: 400;
+    color: #000;
+    &:hover{
+        border-color: #8F64D4;
+    }
+    &:focus{
+        outline: 0;
+    }
+    span{
+        color: #000;
+    }
 `;
+
+export const CountTicket = styled.div`
+    color: #000;
+`
 
 export const ButtonConfirmTickets = styled.button`
     border-radius: 4px;

@@ -76,7 +76,27 @@ export const ListContent = styled.div`
     gap: 10px;
     overflow: auto;
     max-height: calc(100vh - 200px);
+    position: relative;
 `;
+
+type ListItemStatusProps = {
+    status?: 'ATIVO' | 'INATIVO';
+}
+
+export const ListProducts = styled(ListContent)<ListItemStatusProps>`
+    &::after{
+        content: '';
+        right: 5px;
+        bottom: 50%;
+        transform: translateY(50%);
+        position: absolute;
+        background-color: #f00;
+        display: block;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+    }
+`
 
 export const TableContainer = styled(ListContent)`
     background-color: #eee;

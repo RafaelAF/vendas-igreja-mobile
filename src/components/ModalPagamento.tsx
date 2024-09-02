@@ -3,7 +3,7 @@ import { HeaderContainer, MiniModal, ModalContainer, Title } from "../styles"
 import { ModaisContext } from "../contexts/modaisContext"
 
 import IconClose from '../assets/X.svg'
-import { ButtonCadastro, ButtonConfirmTickets, CadastroContainer, FinishIcon, FishTitle, InputCustom, LabelContent, PaymentContainer, PaymentItem, PaymentItemActive, SelectTicketsContainer, SpinnerContainer, TicketItem } from "./styles/styles"
+import { ButtonCadastro, ButtonConfirmTickets, CadastroContainer, CountTicket, FinishIcon, FishTitle, InputCustom, LabelContent, PaymentContainer, PaymentItem, PaymentItemActive, SelectTicketsContainer, SpinnerContainer, TicketItem } from "./styles/styles"
 import { usePagamento } from "../hooks/usePagamento"
 import { ProdutoSelecionado } from "../@types/produto"
 
@@ -276,7 +276,7 @@ export const ModalPagamento = ({selecao, total, closeAll}: Props) => {
                                 <TicketItem onClick={()=>{
                                     handleChoseTicket(1, "MINUS")
                                 }}>-</TicketItem>
-                                <span>{ticket.ticket1}</span>
+                                <CountTicket>{ticket.ticket1}</CountTicket>
                                 <TicketItem onClick={()=>{
                                     handleChoseTicket(1, "PLUS")
                                 }}>+</TicketItem>
@@ -288,7 +288,7 @@ export const ModalPagamento = ({selecao, total, closeAll}: Props) => {
                                 <TicketItem onClick={()=>{
                                     handleChoseTicket(2, "MINUS")
                                 }}>-</TicketItem>
-                                <span>{ticket.ticket2}</span>
+                                <CountTicket>{ticket.ticket2}</CountTicket>
                                 <TicketItem onClick={()=>{
                                     handleChoseTicket(2, "PLUS")
                                 }}>+</TicketItem>
@@ -300,7 +300,7 @@ export const ModalPagamento = ({selecao, total, closeAll}: Props) => {
                                 <TicketItem onClick={()=>{
                                     handleChoseTicket(3, "MINUS")
                                 }}>-</TicketItem>
-                                <span>{ticket.ticket3}</span>
+                                <CountTicket>{ticket.ticket3}</CountTicket>
                                 <TicketItem onClick={()=>{
                                     handleChoseTicket(3, "PLUS")
                                 }}>+</TicketItem>
@@ -312,7 +312,7 @@ export const ModalPagamento = ({selecao, total, closeAll}: Props) => {
                                 <TicketItem onClick={()=>{
                                     handleChoseTicket(4, "MINUS")
                                 }}>-</TicketItem>
-                                <span>{ticket.ticket4}</span>
+                                <CountTicket>{ticket.ticket4}</CountTicket>
                                 <TicketItem onClick={()=>{
                                     handleChoseTicket(4, "PLUS")
                                 }}>+</TicketItem>
@@ -324,7 +324,7 @@ export const ModalPagamento = ({selecao, total, closeAll}: Props) => {
                                 <TicketItem onClick={()=>{
                                     handleChoseTicket(5, "MINUS")
                                 }}>-</TicketItem>
-                                <span>{ticket.ticket5}</span>
+                                <CountTicket>{ticket.ticket5}</CountTicket>
                                 <TicketItem onClick={()=>{
                                     handleChoseTicket(5, "PLUS")
                                 }}>+</TicketItem>
