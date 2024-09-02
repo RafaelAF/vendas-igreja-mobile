@@ -17,7 +17,7 @@ export const MenuBox = styled.div`
     left: 25%;
     max-width: 425px;
     margin: 0 auto;
-    background-color: #E9E9E9;
+    background-color: #00005C;
 `;
 
 export const MenuList = styled.div`
@@ -29,9 +29,21 @@ export const MenuList = styled.div`
 
 export const MenuItem = styled.div`
     border-radius: 8px;
-    padding: 10px 21px;
+    padding: 15px 21px;
+    max-height: 42px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    background: #D9D9D9;
+    justify-content: center;
+    background: #1C0E8A;
+`;
+
+export const MenuText = styled.p`
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin: 0;
+    text-align: center ;
 `;

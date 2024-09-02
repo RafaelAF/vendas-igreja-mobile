@@ -9,7 +9,10 @@ import {
   ListItem, 
   FooterContainer, 
   ListContent, 
-  ButtonConfirm, Text, ControlsContainer, ButtonsContainer } from "./styles"
+  ButtonConfirm, Text, ControlsContainer, ButtonsContainer, 
+  FooterTitle,
+  ButtonNextStep,
+  MenuIconContainer} from "./styles"
 
 import { useContext, useEffect, useState } from "react"
 
@@ -18,6 +21,7 @@ import { ModalSelecionados } from "./components/ModalSelecionados"
 import { ModaisContext } from "./contexts/modaisContext"
 
 import MenuIcon from './assets/List.svg'
+import MenuIcon2 from './assets/MenuIcon2.svg'
 import { Product } from "./@types/produto"
 import { EmptyList } from "./components/EmptyList"
 import { useSelected } from "./hooks/useSelected"
@@ -57,8 +61,10 @@ function App() {
     <ContainerApp>
         <BlocoApp>
           <HeaderContainer>
-            <Title>Caixa de Produtos</Title>
-            <img onClick={handleOpenMenu} src={MenuIcon} alt="" />
+            <Title>Caixa de Produtos Rainha da paz</Title>
+            <MenuIconContainer>
+              <img onClick={handleOpenMenu} src={MenuIcon2} alt="" />
+            </MenuIconContainer>
           </HeaderContainer>
           <Container>
             <ListContainer>
@@ -69,11 +75,15 @@ function App() {
                     <Text>{item.name}</Text>
                     <ControlsContainer>
                       <span>R$ {(item.price).toFixed(2)}</span>
-                      <ButtonsContainer><button onClick={()=>{
-                        selectItem.handleMinusClick(Number(item.id))
-                      }}>-</button>{selectItem.quantidades[item.id] ?? 0}<button onClick={()=>{
-                        selectItem.handlePlusClick(Number(item.id))
-                      }}>+</button></ButtonsContainer>
+                      <ButtonsContainer>
+                        <button onClick={()=>{
+                          selectItem.handleMinusClick(Number(item.id))
+                        }}>-</button>
+                        {selectItem.quantidades[item.id] ?? 0}
+                        <button onClick={()=>{
+                          selectItem.handlePlusClick(Number(item.id))
+                        }}>+</button>
+                      </ButtonsContainer>
                     </ControlsContainer>
                   </ListItem>
                 ))
@@ -83,8 +93,8 @@ function App() {
                 }
               </ListContent>
               <FooterContainer>
-                <Title>Total: R${(selectItem.total).toFixed(2)}</Title>
-                {selectItem.total > 0 &&  <ButtonConfirm onClick={handleOpenSelecionados}>VER PEDIDOS</ButtonConfirm>}
+                <FooterTitle>Total: R${(selectItem.total).toFixed(2)}</FooterTitle>
+                {selectItem.total > 0 &&  <ButtonNextStep onClick={handleOpenSelecionados}>VER ITEMS</ButtonNextStep>}
                 
               </FooterContainer>
             </ListContainer>

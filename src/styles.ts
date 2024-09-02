@@ -11,7 +11,7 @@ export const ContainerApp = styled.div`
 export const BlocoApp = styled.div`
     max-width: 425px;
     width: 100%;
-    background-color: #d9d9d9;
+    background-color: #00005C;
     display: flex;
     /* background-color: red; */
     flex-direction: column;
@@ -25,11 +25,11 @@ export const HeaderContainer = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 14px;
+    padding: 0 20px;
 `;
 
 export const Title = styled.h1`
-    color: #000;
+    color: #fff;
     text-align: start;
     font-family: 'Inter', sans-serif;
     font-size: 16px;
@@ -38,7 +38,12 @@ export const Title = styled.h1`
     line-height: normal;
 `;
 export const Title2 = styled(Title)`
-    margin: 14px 10px;
+    padding: 14px 10px;
+    color: #000;
+    border-bottom: 1px solid #000;
+`;
+export const FooterTitle = styled(Title)`
+    color: #000;
 `;
 
 export const Text = styled.p`
@@ -46,13 +51,13 @@ export const Text = styled.p`
     font-family: 'Inter', sans-serif;
     font-size: 16px;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 700;
     line-height: normal;
     margin: 0;
 `;
 
 export const Container = styled.div`
-    background-color: #fff;
+    background-color: #00005C;
     height: calc(100vh - 57px);
     display: flex;
     justify-content: center;
@@ -61,7 +66,7 @@ export const Container = styled.div`
 
 export const ListContainer = styled.div`
     border-radius: 8px;
-    background: rgba(117, 98, 203, 0.20);
+    background: #fff;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -149,25 +154,38 @@ export const ListItem = styled.div`
 
 export const ControlsContainer = styled.div`
     display: flex;
+    align-items: center;
+    span{
+        font-weight: 700;
+    }
 `;
 
 export const ButtonsContainer = styled.div`
     margin-left: 5px;
     display: flex;
+    align-items: center;
+    font-weight: 700;
+    gap: 5px;
     button{
-        width: 23px;
-        height: 23px;
-        background-color: rgba(41, 32, 71, 0.50);
+        outline: 0;
+        width: 30px;
+        height: 30px;
+        background-color: #110962;
         display: flex;
         justify-content: center;
         align-items: center;
-        border-radius: 50%;
+        text-align: center;
+        /* border-radius: 50%; */
         padding: 5px;
         color: #fff;
+        font-size: 32px;
         &:first-child{
+            font-size: 40px !important;
             margin-right: 5px;
+            padding-bottom: 13px;
         }
         &:last-child{
+            padding-bottom: 11px;
             margin-left: 5px;
         }
     }
@@ -198,6 +216,12 @@ export const ButtonConfirm = styled.button`
     line-height: normal;
 `;
 
+export const ButtonNextStep = styled(ButtonConfirm)`
+    background: #00005C; 
+    color: #FFF;
+    padding: 0px 15px;
+`;
+
 
 export const ModalContainer = styled.div`
     position: fixed;
@@ -225,4 +249,15 @@ export const MiniModal = styled(Modal)`
     top: -80px;
     max-width: 350px;
     /* transition: 300ms linear; */
+`;
+
+export const MenuIconContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background-color: #4122D8;
+    border-radius: 8px;
+    max-width: 35px;
+    max-height: 35px;
 `;

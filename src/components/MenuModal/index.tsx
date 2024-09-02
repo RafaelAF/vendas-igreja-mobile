@@ -1,10 +1,10 @@
-import { HeaderContainer } from "../../styles"
-import { MenuBox, MenuContainer, MenuItem, MenuList } from "./style"
+import { HeaderContainer, MenuIconContainer, Title } from "../../styles"
+import { MenuBox, MenuContainer, MenuItem, MenuList, MenuText } from "./style"
 import { Text } from "../../styles"
 
-import IconClose from '../../assets/X.svg'
-import IconPencil from '../../assets/PencilLine.svg'
-import IconCash from '../../assets/cashIcon.svg'
+import closeIcon2 from '../../assets/closeIcon2.svg'
+// import IconPencil from '../../assets/PencilLine.svg'
+// import IconCash from '../../assets/cashIcon.svg'
 import { useContext } from "react"
 import { ModaisContext } from "../../contexts/modaisContext"
 import { ModalCadastro } from "../ModalCadastroDeProduto"
@@ -33,31 +33,34 @@ export const MenuModal = () => {
         <MenuContainer>
             <MenuBox>
                 <HeaderContainer>
-                    <span></span>
-                    <img onClick={handleCloseMenu} src={IconClose} style={{width: "32px"}} alt="" />
+                    <Title>Caixa de Produtos Rainha da paz</Title>
+                    <MenuIconContainer>
+                        <img onClick={handleCloseMenu} src={closeIcon2}  alt="" />
+
+                    </MenuIconContainer>
                 </HeaderContainer>
                 <MenuList>
                     <MenuItem onClick={()=>{
                             modaisCtx?.dispatch({type: "OPEN_CADASTRO", payload: {acao: true}})
                         }}>
-                        <Text>Cadastrar produtos</Text>
-                        <img  src={IconPencil} alt="" />
+                        <MenuText>Cadastrar produtos</MenuText>
+                        {/* <img  src={IconPencil} alt="" /> */}
                     </MenuItem>
                     <MenuItem onClick={()=>{
                         modaisCtx?.dispatch({type: "OPEN_VENDAS", payload: {acao: true}})
                     }}>
-                        <Text>Controle de vendas</Text>
-                        <img src={IconCash} alt="" />
+                        <MenuText>Controle de vendas</MenuText>
+                        {/* <img src={IconCash} alt="" /> */}
                     </MenuItem>
                     <MenuItem onClick={()=>{
                         handleDeleteProductData()
                     }}>
-                        <Text>Apagar Produtos cadastrados</Text>
+                        <MenuText>Apagar Produtos cadastrados</MenuText>
                     </MenuItem>
                     <MenuItem onClick={()=>{
                         handleDeleteVendasData()
                     }}>
-                        <Text>Apagar Vendas</Text>
+                        <MenuText>Apagar Vendas</MenuText>
                     </MenuItem>
                     
                 </MenuList>
