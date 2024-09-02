@@ -14,6 +14,8 @@ import {
   ButtonNextStep,
   MenuIconContainer} from "./styles"
 
+  import { Analytics } from "@vercel/analytics/react"
+
 import { useContext, useEffect, useState } from "react"
 
 import { MenuModal } from "./components/MenuModal"
@@ -58,6 +60,7 @@ function App() {
 
   return (
     <ContainerApp>
+      <Analytics />
         <BlocoApp>
           <HeaderContainer>
             <Title>Caixa de Produtos Rainha da paz</Title>
