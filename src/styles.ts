@@ -36,6 +36,7 @@ export const Title = styled.h1`
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+    margin: 0;
 `;
 export const Title2 = styled(Title)`
     padding: 14px 10px;
@@ -44,6 +45,7 @@ export const Title2 = styled(Title)`
 `;
 export const FooterTitle = styled(Title)`
     color: #000;
+    margin: 10px 0;
 `;
 
 export const Text = styled.p`
@@ -82,6 +84,7 @@ export const ListContent = styled.div`
     overflow: auto;
     max-height: calc(100vh - 200px);
     position: relative;
+    padding: 10px 0;
 `;
 
 type ListItemStatusProps = {
@@ -196,9 +199,10 @@ export const FooterContainer = styled.div`
     bottom: 0;
     left: 0;
     right: 0;
-    background: rgba(117, 98, 203, 0.20); 
+    background: #fff; 
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
+    border-top: 1px solid #000;
     /* width: 100%; */
     display: flex;
     justify-content: space-between;

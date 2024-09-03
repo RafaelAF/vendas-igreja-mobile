@@ -2,24 +2,30 @@ import styled from "styled-components";
 
 export const SelectButtons = styled.div`
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    gap: 16px;
     /* background-color: red; */
     width: 100%;
 `;
 
 export const ButtonToggle = styled.button`
     border-radius: 5px;
-    border: 1px solid rgba(0, 0, 0, 0.20);
-    background: rgba(217, 217, 217, 0.20);
+    
+    border: 1px solid #D9D9D9;
+    background: #FEF5D7;
     color: #000;
+    font-weight: 700;
+    flex: 1;
+    transition: all 300ms;
     &:hover{
-        border-color: #8F64D4;
+        opacity: 0.8;
     }
 `;
 export const ButtonToggleSelected = styled(ButtonToggle)`
     border-radius: 5px;
-    border: 1px solid #8F64D4;
-    background: #EBDBFF;
+    border: 1px solid #3B2800;
+    
+    background: #FED72F;
 `;
 
 export const ContainerTotalValor = styled.div`
@@ -38,7 +44,7 @@ export const CadastroContainer = styled.div`
     margin: 0 auto;
     padding: 13px 15px;
     border-radius: 8px;
-    background: rgba(117, 90, 203, 0.25);
+    background: #ECECEC;
 `;
 
 
@@ -46,6 +52,7 @@ export const LabelContent = styled.label`
     display: flex;
     flex-direction: column;
     color: #000;
+    font-weight: 700;
 `;
 
 export const InputGroup = styled.div`
@@ -62,7 +69,7 @@ export const InputGroup = styled.div`
 
 export const InputCustom = styled.input`
     border-radius: 5px;
-    border: 1px solid rgba(0, 0, 0, 0.20);
+    border: 1px solid #000;
     background: rgba(217, 217, 217, 0.20); 
     color: #000;
     font-family: 'Inter', sans-serif;
@@ -77,8 +84,8 @@ export const ButtonCadastro = styled.button`
     width: 100%;
     margin-top: 22px;
     border-radius: 8px;
-    border: 1px solid #000;
-    background: #45C043;
+    border: 1px solid #000031;
+    background: #000031;
     color: #fff;
 `;
 
