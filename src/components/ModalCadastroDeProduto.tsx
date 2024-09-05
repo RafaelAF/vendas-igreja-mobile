@@ -4,6 +4,7 @@ import {
     ControlsContainer,
     FooterContainer, 
     HeaderContainer, 
+    ListAvaliableProducts, 
     ListContent, 
     ListItem, 
     Modal, 
@@ -60,7 +61,7 @@ export const ModalCadastro = () => {
         
     }
 
-    const saveProduct = (name: string, price: number, qtd: number) => {
+    const saveProduct = (name: string, price: number, qtd: number, avaliable = true) => {
         const dataStorage = localStorage.getItem("NewProducts")
 
         if(dataStorage){ // se tiver algo salvo
@@ -68,14 +69,14 @@ export const ModalCadastro = () => {
 
             const hasProduct = products.filter(item => item.name == name ? true : false)
             if(hasProduct.length == 0){
-                localStorage.setItem("NewProducts", JSON.stringify([...products, {id: new Date().getTime(), name, price, qtd}]))
+                localStorage.setItem("NewProducts", JSON.stringify([...products, {id: new Date().getTime(), name, price, qtd, avaliable}]))
             }else{
                 alert("Ja tem no cadastro")
             }
         }
         else{ // salvar pela primeira vez
             const products: Product[] = []
-            localStorage.setItem("NewProducts", JSON.stringify([...products, {id: new Date().getTime(), name, price, qtd}]))
+            localStorage.setItem("NewProducts", JSON.stringify([...products, {id: new Date().getTime(), name, price, qtd, avaliable}]))
         }
     }
 
@@ -130,7 +131,7 @@ export const ModalCadastro = () => {
                             {modaisCrx?.modais.cadastroProduto && modaisCrx.modais.listagem &&
                                 <>
                                     {listProducts.map((item) => (
-                                        <ListContent key={item.id} onClick={()=>{
+                                        <ListAvaliableProducts avaliable={item.avaliable} key={item.id} onClick={()=>{
                                             modaisCrx.dispatch({type: "OPEN_EDIT", payload: {acao: true}})
                                             localStorage.setItem("product_edit", JSON.stringify(item))
                                         }}>
@@ -141,7 +142,7 @@ export const ModalCadastro = () => {
                                                     <ButtonsContainer>- qtd. {item.qtd}</ButtonsContainer>
                                                 </ControlsContainer>
                                             </ListItem>
-                                        </ListContent>
+                                        </ListAvaliableProducts>
                                     ))}
                                 </>
                                     

@@ -15,7 +15,7 @@ import { useContext, useEffect, useState } from "react"
 import { ModaisContext } from "../contexts/modaisContext"
 import { ProductContext } from "../contexts/configProductContext"
 import { Product } from "../@types/produto"
-import { ButtonsEditContainer, EditContainer, InputCustom, InputGroup, LabelContent } from "./styles/styles"
+import { ButtonsEditContainer, CheckBoxCustom, EditContainer, InputCustom, InputGroup, LabelContent } from "./styles/styles"
 import { useEditProd } from "../hooks/useEditProd"
 
 export const ModalEdit = () => {
@@ -30,6 +30,7 @@ export const ModalEdit = () => {
     const [productName, setProductName] = useState(produto?.name)
     const [productPrice, setProductPrice] = useState(produto?.price)
     const [productQtd, setProductQtd] = useState(produto?.qtd)
+    const [isActive, setIsActive] = useState(produto?.avaliable)
 
     useEffect(()=>{
         const data = JSON.parse(localStorage.getItem("product_edit") ?? '')
@@ -45,6 +46,7 @@ export const ModalEdit = () => {
             setProductName(produto.name)
             setProductPrice(produto.price)
             setProductQtd(produto.qtd)
+            setIsActive(produto.avaliable)
         }
     },[produto])
 
@@ -55,6 +57,8 @@ export const ModalEdit = () => {
         modaisCtx?.dispatch({type: "OPEN_EDIT", payload: {acao: false}})
         localStorage.setItem("product_edit", "")
     }
+
+    if(produto === null) return null
 
     return (
         <>
@@ -88,6 +92,17 @@ export const ModalEdit = () => {
                                 }} />
                             </LabelContent>
                         </InputGroup>
+                        <div>
+
+                            <CheckBoxCustom>
+                                Ativo
+                                <input type="checkbox" checked={isActive} onClick={()=>{
+                                    setIsActive(!isActive)
+                                }} />
+                                <span></span>
+                                {/* <CheckBoxCustom type="checkbox" name="" id="" />; */}
+                            </CheckBoxCustom>
+                        </div>
                         <ButtonsEditContainer>
                             <button onClick={()=>{
                                 deleteProduct()
@@ -96,7 +111,7 @@ export const ModalEdit = () => {
                                 // if(productName, productPrice, productQtd){
                                 //     changeProduct(productName, productPrice, productQtd)
                                 // }
-                                changeProduct(productName ?? '', productPrice ?? 0, productQtd ?? 0)
+                                changeProduct(productName ?? '', productPrice ?? 0, productQtd ?? 0, isActive ?? true) 
 
                                 
                             }}>Salvar</button>

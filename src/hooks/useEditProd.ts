@@ -19,7 +19,8 @@ export const useEditProd = () => {
         }
     }, [])
 
-    const changeProduct = (name: string, price: number, qtd: number) => {
+    const changeProduct = (name: string, price: number, qtd: number, avaliable: boolean) => {
+        console.log("ProdSelected =>", avaliable)
         const confirmacao = confirm("Deseja salvar as alteracoes?")
         if(confirmacao){
             const newList = totalProd?.map((element)=>{
@@ -28,12 +29,14 @@ export const useEditProd = () => {
                         id: prodSelected.id,
                         name,
                         price,
-                        qtd
+                        qtd,
+                        avaliable
                     }
                 }
                 return element
             }) ?? null
             // setTotalProd(newList)
+            console.log(newList)
             localStorage.setItem("NewProducts", JSON.stringify(newList))
             // console.log(newList)
             modaisCtx?.dispatch({type: "OPEN_EDIT", payload: {acao: false}})

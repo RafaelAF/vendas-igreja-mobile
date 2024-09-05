@@ -51,6 +51,7 @@ function App() {
 
     if(products){
       setListProducts(JSON.parse(products))
+      console.log("Producst =>", JSON.parse(products))
     }
 
     // Para pular o build

@@ -80,6 +80,67 @@ export const InputCustom = styled.input`
     padding: 10px 16px;
 `;
 
+export const CheckBoxCustom = styled.label`
+    color: #000;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    padding-top: 5px;
+    cursor: pointer;
+    /* font-size: 22px; */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    &:hover input ~ span {
+        background-color: #ccc;
+    }
+    /* align-self: self-start; */
+    input{
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+
+        &:checked ~ span{
+            background-color: #2196F3;
+            &:after{
+                display: block;
+            }
+        }
+    }
+    span{
+        position: absolute;
+        top: 3px;
+        left: 0;
+        height: 25px;
+        width: 25px;
+        background-color: #eee;
+        border: 1px solid #000;
+        &:after{
+            content: "";
+            position: absolute;
+            display: none;
+            left: 9px;
+            top: 5px;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 3px 3px 0;
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+    }
+
+`;
+
 export const ButtonCadastro = styled.button`
     width: 100%;
     margin-top: 22px;

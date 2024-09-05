@@ -88,17 +88,17 @@ export const ListContent = styled.div`
 `;
 
 type ListItemStatusProps = {
-    status?: 'ATIVO' | 'INATIVO';
+    avaliable: boolean;
 }
 
-export const ListProducts = styled(ListContent)<ListItemStatusProps>`
+export const ListAvaliableProducts = styled(ListContent)<ListItemStatusProps>`
     &::after{
         content: '';
         right: 5px;
         bottom: 50%;
         transform: translateY(50%);
         position: absolute;
-        background-color: #f00;
+        background-color: ${props => props.avaliable ? "#18BA53" : "#FF0000"};
         display: block;
         width: 15px;
         height: 15px;

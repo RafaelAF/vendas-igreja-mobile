@@ -21,7 +21,8 @@ export const ProductProvider = ({children}: Props) => {
         id: "",
         name: "",
         price: 0,
-        qtd: 0
+        qtd: 0,
+        avaliable: false
     }
 
     const [product, dispatch] = useReducer(configProductReducer, configProductState)
