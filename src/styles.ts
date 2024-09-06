@@ -43,6 +43,11 @@ export const Title2 = styled(Title)`
     color: #000;
     border-bottom: 1px solid #000;
 `;
+
+export const LabelPagamento = styled(Title)`
+    color: #000;
+`;
+
 export const FooterTitle = styled(Title)`
     color: #000;
     margin: 10px 0;

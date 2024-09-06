@@ -7,9 +7,9 @@ import {
     ListItem, 
     Modal, 
     ModalContainer, 
-    Title, 
     Title2, 
-    ControlsContainer 
+    ControlsContainer, 
+    FooterTitle
 } from "../styles"
 
 import IconClose from '../assets/X.svg'
@@ -61,7 +61,7 @@ export const ModalSelecionados = ({selecao, total, closeAll}: Props) => {
 
                     </ListContent>
                     <FooterContainer>
-                        <Title>Total: R${total.toFixed(2)}</Title>
+                        <FooterTitle>Total: R${total.toFixed(2)}</FooterTitle>
                         <ButtonConfirm  onClick={handleOpenModalPagamento}>CONFIRMAR</ButtonConfirm>
                     </FooterContainer>
                 </Modal>

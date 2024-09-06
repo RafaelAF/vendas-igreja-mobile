@@ -269,6 +269,7 @@ export const FishTitle = styled.div`
     display: flex;
     justify-content: center;
     font-size: 2rem;
+    color: #000;
 `;
 
 export const FinishIcon = styled.img`

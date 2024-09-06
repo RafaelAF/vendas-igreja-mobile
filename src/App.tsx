@@ -73,23 +73,27 @@ function App() {
             <ListContainer>
               <Title2>Lista de Produtos</Title2>
               <ListContent>
-                {listProducts.map((item)=>(
-                  <ListItem>
-                    <Text>{item.name}</Text>
-                    <ControlsContainer>
-                      <span>R$ {(item.price).toFixed(2)}</span>
-                      <ButtonsContainer>
-                        <button onClick={()=>{
-                          selectItem.handleMinusClick(Number(item.id))
-                        }}>-</button>
-                        {selectItem.quantidades[item.id] ?? 0}
-                        <button onClick={()=>{
-                          selectItem.handlePlusClick(Number(item.id))
-                        }}>+</button>
-                      </ButtonsContainer>
-                    </ControlsContainer>
-                  </ListItem>
-                ))
+                {listProducts.map((item)=>{
+                  if(item.avaliable){
+                    return (
+                      <ListItem>
+                        <Text>{item.name}</Text>
+                        <ControlsContainer>
+                          <span>R$ {(item.price).toFixed(2)}</span>
+                          <ButtonsContainer>
+                            <button onClick={()=>{
+                              selectItem.handleMinusClick(Number(item.id))
+                            }}>-</button>
+                            {selectItem.quantidades[item.id] ?? 0}
+                            <button onClick={()=>{
+                              selectItem.handlePlusClick(Number(item.id))
+                            }}>+</button>
+                          </ButtonsContainer>
+                        </ControlsContainer>
+                      </ListItem>
+                    )
+                  }
+                })
                 }
                 {listProducts.length == 0 &&
                   <EmptyList />

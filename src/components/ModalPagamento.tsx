@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react"
-import { HeaderContainer, MiniModal, ModalContainer, Title } from "../styles"
+import { HeaderContainer, LabelPagamento, MiniModal, ModalContainer } from "../styles"
 import { ModaisContext } from "../contexts/modaisContext"
 
 import IconClose from '../assets/X.svg'
@@ -218,7 +218,7 @@ export const ModalPagamento = ({selecao, total, closeAll}: Props) => {
                 {!payment.pago && !payment.load && !payment.selectTicket && 
                     <CadastroContainer>
                         <LabelContent>
-                            <Title>Forma de pagamento</Title>
+                            <LabelPagamento>Forma de pagamento</LabelPagamento>
                             <PaymentContainer>
                                 {payment.paymentMethod.method == "pix" &&
                                     <PaymentItemActive onClick={()=>{payment.changeMethod({method: "pix"})}}>PIX</PaymentItemActive>
@@ -241,13 +241,13 @@ export const ModalPagamento = ({selecao, total, closeAll}: Props) => {
                             </PaymentContainer>
                         </LabelContent>
                         <LabelContent>
-                            <Title>Valor Pago</Title>
+                            <LabelPagamento>Valor Pago</LabelPagamento>
                             <InputCustom value={valorPago} placeholder="Digite apenas numeros" type="text" onChange={(e)=>{
                                 setValorPago(e.target.value)
                             }} />
                         </LabelContent>
                         <LabelContent>
-                            <Title>Troco</Title>
+                            <LabelPagamento>Troco</LabelPagamento>
                             <InputCustom disabled={true} value={troco < 0 ? "Valor inferior ao total" : `R$ ${troco.toFixed(2)}`} placeholder="R$ 0,00" type="text" />
                         </LabelContent>
                         
@@ -266,8 +266,8 @@ export const ModalPagamento = ({selecao, total, closeAll}: Props) => {
                 {payment.pago && !payment.load && !payment.selectTicket && 
                     <>  
                         <SelectTicketsContainer>
-                            <Title style={{width: '50%'}}>Selecao de  tickets Valor restante</Title>
-                            <Title>R$ {totalTicket}</Title>
+                            <LabelPagamento style={{width: '50%'}}>Selecao de  tickets Valor restante</LabelPagamento>
+                            <LabelPagamento>R$ {totalTicket}</LabelPagamento>
                             {/* <Title>R$ {troco}</Title> */}
                         </SelectTicketsContainer>
                         <SelectTicketsContainer>

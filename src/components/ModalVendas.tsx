@@ -1,4 +1,4 @@
-import { FooterContainer, HeaderContainer, TableContainer, Modal, ModalContainer, Title2, Text } from "../styles"
+import { FooterContainer, HeaderContainer, TableContainer, Modal, ModalContainer, Title2, Text, LabelPagamento } from "../styles"
 
 import IconClose from '../assets/X.svg'
 import { useContext, useEffect, useState } from "react"
@@ -11,7 +11,7 @@ export const ModalVendas = () => {
 
     const modaisCtx = useContext(ModaisContext)
 
-    const [totalVendido, setTotalVendido] = useState(0)
+    // const [totalVendido, setTotalVendido] = useState(0)
     const [vendasFeitas, setVendasFeitas] = useState<Venda[]>([])
 
     const handleCloseModal = () => {
@@ -19,12 +19,14 @@ export const ModalVendas = () => {
     }
 
     useEffect(()=>{
-        const totalVendidoValue = localStorage.getItem("TotalVendido")
+        // const totalVendidoValue = localStorage.getItem("TotalVendido")
         const vendasData = localStorage.getItem("Vendas")
         if(vendasData){
-            setVendasFeitas(JSON.parse(vendasData))
+            const vendas:Venda[] = JSON.parse(vendasData)
+            const vendasHoje = vendas.filter((item)=>new Date(item.id).getDate() === new Date().getDate() && new Date(item.id).getMonth() === new Date().getMonth() && new Date(item.id).getFullYear() === new Date().getFullYear())
+            setVendasFeitas(vendasHoje)
         }
-        setTotalVendido(Number(totalVendidoValue))
+        // setTotalVendido(Number(totalVendidoValue))
     },[])
 
     return (
@@ -35,7 +37,8 @@ export const ModalVendas = () => {
                         <span></span>
                         <img onClick={handleCloseModal} src={IconClose} style={{width: "32px"}} alt="" />
                     </HeaderContainer>
-                    <Title2>Vendas realizadas</Title2>
+                    <Title2>Vendas realizadas hoje</Title2>
+                    <LabelPagamento>Data do dia</LabelPagamento>
                     <TableContainer>
                             <table>
                                 <thead>
@@ -49,7 +52,7 @@ export const ModalVendas = () => {
                                 <tbody>
                                     {vendasFeitas.map((item, index)=>(
                                         <tr key={index}>
-                                            {/* <td>22:53</td> */}
+                                                    
                                             <td>
                                                 {new Date(item.id).getHours()}:{new Date(item.id).getMinutes() < 10 ? `0${new Date(item.id).getMinutes()}` : new Date(item.id).getMinutes()}
                                             </td>
@@ -63,7 +66,7 @@ export const ModalVendas = () => {
                                             <td>R$ {(item.valorPago - item.valorTroco).toFixed(2)}</td>
                                             <td>R$ {(item.valorTroco).toFixed(2)}</td>
                                         </tr>
-                                    ))
+                                        ))
 
                                     }
                                     
@@ -73,7 +76,7 @@ export const ModalVendas = () => {
                     <FooterContainer>
                         <ContainerTotalValor>
                             <Text>Total vendido</Text>
-                            <Text>R$ {totalVendido.toFixed(2)}</Text>
+                            <Text>R$ {(vendasFeitas.reduce((acc, cur)=> acc + cur.valorPago - cur.valorTroco, 0)).toFixed(2).replace(".", ",")}</Text>
                         </ContainerTotalValor>
                     </FooterContainer>
                 </Modal>
