@@ -115,7 +115,7 @@ export const TableContainer = styled(ListContent)`
     background-color: #eee;
     overflow: auto;
     border-radius: 8px;
-    height: 100%;
+    height: auto;
     width: 95%;
     margin: 0 auto;
     table{
@@ -127,6 +127,7 @@ export const TableContainer = styled(ListContent)`
                 background-color: #999;
                 th{
                     color: #fff;
+                    min-width: 100px;
                 }
             }
         }
@@ -135,6 +136,9 @@ export const TableContainer = styled(ListContent)`
                 td{
                     text-align: center;
                     color: #000;
+                    &:nth-child(2){
+                        min-width: 200px;
+                    }
                     div{
                         display: flex;
                         gap: 5px;

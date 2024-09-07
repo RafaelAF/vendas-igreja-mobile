@@ -304,3 +304,36 @@ export const ButtonsEditContainer = styled.div`
         }
     }
 `
+
+export const HeadTitleVendas = styled.div`
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin: 0;
+    color: #000;
+    display: flex;
+    justify-content: space-between;
+    padding: 14px 10px;
+    border-bottom: 1px solid #000;
+    align-items: center;
+    flex-wrap: wrap;
+    p{
+
+    }
+    select {
+        font-size: 16px;
+        outline: 0;
+        background-color: #ddd;
+        padding: 2px 5px;
+        color: #000;
+        option{
+            color: #000;
+            background-color: #ddd;
+        }
+    }
+    button{
+        flex: 1;
+    }
+`;
