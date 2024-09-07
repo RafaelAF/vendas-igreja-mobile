@@ -318,11 +318,12 @@ export const HeadTitleVendas = styled.div`
     padding: 14px 10px;
     border-bottom: 1px solid #000;
     align-items: center;
-    flex-wrap: wrap;
+    display: grid;
     p{
-
+        grid-column: 1 / 2;
     }
     select {
+        grid-column: 2 / 3;
         font-size: 16px;
         outline: 0;
         background-color: #ddd;
@@ -334,6 +335,6 @@ export const HeadTitleVendas = styled.div`
         }
     }
     button{
-        flex: 1;
+        grid-column: 1 / 3;
     }
 `;
