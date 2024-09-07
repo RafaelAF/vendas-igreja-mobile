@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react"
 import { Product } from "../@types/produto"
 import { ModaisContext } from "../contexts/modaisContext"
+import { ListProductsContext } from "../contexts/ListProductsContext"
 // import { Product } from "../@types/produto"
 
 
@@ -10,6 +11,7 @@ export const useEditProd = () => {
     const [totalProd, setTotalProd] = useState<Product[] | null>(null)
 
     const modaisCtx = useContext(ModaisContext)
+    const globalProducts = useContext(ListProductsContext)
     useEffect(()=>{
         const data: Product = JSON.parse(localStorage.getItem("product_edit") ?? '')
         const totalData = JSON.parse(localStorage.getItem("NewProducts") ?? '')
@@ -36,8 +38,9 @@ export const useEditProd = () => {
                 return element
             }) ?? null
             // setTotalProd(newList)
-            console.log(newList)
+            // console.log(newList)
             localStorage.setItem("NewProducts", JSON.stringify(newList))
+            globalProducts?.setListGlobalProducts(newList ?? [])
             // console.log(newList)
             modaisCtx?.dispatch({type: "OPEN_EDIT", payload: {acao: false}})
         } 
@@ -53,6 +56,7 @@ export const useEditProd = () => {
             }) ?? null
             // setTotalProd(newList)
             localStorage.setItem("NewProducts", JSON.stringify(newList))
+            globalProducts?.setListGlobalProducts(newList ?? [])
             // console.log(newList)
             modaisCtx?.dispatch({type: "OPEN_EDIT", payload: {acao: false}})
         }

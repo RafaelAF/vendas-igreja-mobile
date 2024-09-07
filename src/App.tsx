@@ -16,24 +16,26 @@ import {
 
   import { Analytics } from "@vercel/analytics/react"
 
-import { useContext, useEffect, useState } from "react"
+import { useContext } from "react"
 
 import { MenuModal } from "./components/MenuModal"
 import { ModalSelecionados } from "./components/ModalSelecionados"
 import { ModaisContext } from "./contexts/modaisContext"
 
 import MenuIcon2 from './assets/MenuIcon2.svg'
-import { Product } from "./@types/produto"
+// import { Product } from "./@types/produto"
 import { EmptyList } from "./components/EmptyList"
 import { useSelected } from "./hooks/useSelected"
 import { ModalVendas } from "./components/ModalVendas"
 import { ModalEdit } from "./components/ModalEdit"
+import { ListProductsContext } from "./contexts/ListProductsContext"
 
 function App() {
   
   const modaisCtx = useContext(ModaisContext)
+  const globalProducts = useContext(ListProductsContext)
 
-  const [listProducts, setListProducts] = useState<Product[]>([])
+  // const [listProducts, setListProducts] = useState<Product[]>(globalProducts?.listGlobalProducts ?? [])
   
 
   
@@ -46,18 +48,25 @@ function App() {
     modaisCtx?.dispatch({type: "OPEN_SELECIONADOS", payload: {acao: true}})
   }
 
-  useEffect(()=>{
-    const products = localStorage.getItem("NewProducts")
+  // useEffect(()=>{
+  //   console.log("GlobalProducts =>", globalProducts)
 
-    if(products){
-      setListProducts(JSON.parse(products))
-      console.log("Producst =>", JSON.parse(products))
-    }
+  //   if(globalProducts?.listGlobalProducts != undefined && globalProducts?.listGlobalProducts != null){
+  //     setListProducts(globalProducts.listGlobalProducts)
+  //   }else{
+  //     setListProducts([])
+  //   }
+  //   // const products = localStorage.getItem("NewProducts")
 
-    // Para pular o build
-  },[])
+  //   // if(products){
+  //   //   setListProducts(JSON.parse(products))
+  //   //   console.log("Producst =>", JSON.parse(products))
+  //   // }
 
-  const selectItem = useSelected(listProducts)
+  //   // Para pular o build
+  // },[])
+
+  const selectItem = useSelected(globalProducts?.listGlobalProducts ?? [])
 
   return (
     <ContainerApp>
@@ -73,10 +82,10 @@ function App() {
             <ListContainer>
               <Title2>Lista de Produtos</Title2>
               <ListContent>
-                {listProducts.map((item)=>{
+                {globalProducts?.listGlobalProducts.map((item)=>{
                   if(item.avaliable){
                     return (
-                      <ListItem>
+                      <ListItem key={item.id}>
                         <Text>{item.name}</Text>
                         <ControlsContainer>
                           <span>R$ {(item.price).toFixed(2)}</span>
@@ -95,7 +104,7 @@ function App() {
                   }
                 })
                 }
-                {listProducts.length == 0 &&
+                {globalProducts?.listGlobalProducts.length == 0 &&
                   <EmptyList />
                 }
               </ListContent>

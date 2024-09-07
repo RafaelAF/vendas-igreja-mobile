@@ -1,6 +1,7 @@
 import { ReactNode, createContext, useReducer } from "react";
 import { ConfigProductActions, configProductReducer } from "../reducers/configProductReducer";
 import { Product } from "../@types/produto";
+import { ListProductsProvider } from "./ListProductsContext";
 
 
 type ProductContextType = {
@@ -29,7 +30,9 @@ export const ProductProvider = ({children}: Props) => {
 
     return (
         <ProductContext.Provider value={{product, dispatch}}>
-            {children}
+            <ListProductsProvider>
+                {children}
+            </ListProductsProvider>
         </ProductContext.Provider>
     )
 }

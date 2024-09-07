@@ -27,17 +27,19 @@ import {
 import { ModaisContext } from "../contexts/modaisContext"
 
 import { Product } from "../@types/produto"
+import { ListProductsContext } from "../contexts/ListProductsContext"
 
 
 export const ModalCadastro = () => {
 
     const modaisCrx = useContext(ModaisContext) 
+    const globalProducts = useContext(ListProductsContext)
 
     const [name, setName] = useState('')
     const [price, setPrice] = useState('')
     const [qtd, setQtd] = useState('')
 
-    const [listProducts, setListProducts] = useState<Product[]>([])
+    const [_, setListProducts] = useState<Product[]>([])
 
 
     const handleCloseModal = () => {
@@ -70,6 +72,7 @@ export const ModalCadastro = () => {
             const hasProduct = products.filter(item => item.name == name ? true : false)
             if(hasProduct.length == 0){
                 localStorage.setItem("NewProducts", JSON.stringify([...products, {id: new Date().getTime(), name, price, qtd, avaliable}]))
+                globalProducts?.setListGlobalProducts([...products, {id: new Date().getTime(), name, price, qtd, avaliable}])
             }else{
                 alert("Ja tem no cadastro")
             }
@@ -77,6 +80,7 @@ export const ModalCadastro = () => {
         else{ // salvar pela primeira vez
             const products: Product[] = []
             localStorage.setItem("NewProducts", JSON.stringify([...products, {id: new Date().getTime(), name, price, qtd, avaliable}]))
+            globalProducts?.setListGlobalProducts([...products, {id: new Date().getTime(), name, price, qtd, avaliable}])
         }
     }
 
@@ -130,7 +134,7 @@ export const ModalCadastro = () => {
                             }
                             {modaisCrx?.modais.cadastroProduto && modaisCrx.modais.listagem &&
                                 <>
-                                    {listProducts.map((item) => (
+                                    {globalProducts?.listGlobalProducts.map((item) => (
                                         <ListAvaliableProducts avaliable={item.avaliable} key={item.id} onClick={()=>{
                                             modaisCrx.dispatch({type: "OPEN_EDIT", payload: {acao: true}})
                                             localStorage.setItem("product_edit", JSON.stringify(item))

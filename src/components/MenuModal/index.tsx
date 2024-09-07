@@ -17,14 +17,24 @@ export const MenuModal = () => {
     }
 
     const handleDeleteProductData = () => {
-        if(confirm("Deseja apagar os produtos cadastrados?")){
+        const value = prompt("Digite a senha para zerar os produtos")
+        if(value == "admin"){
             localStorage.setItem("NewProducts", "")
+            alert("Produtos apagados com sucesso")
+        }else{
+            alert("Senha incorreta")
         }
     }
     const handleDeleteVendasData = () => {
-        if(confirm("Deseja apagar as vendas cadastradas?")){
+        const value = prompt("Digite a senha para zerar as vendas")
+        // console.log(value, "asfsdfsdf")
+        if(value == "admin"){
             localStorage.setItem("Vendas", "")
             localStorage.setItem("TotalVendas", "")
+            localStorage.setItem("TotalVendido", "")
+            alert("Vendas zeradas com sucesso")
+        }else{
+            alert("Senha incorreta")
         }
     }
 
