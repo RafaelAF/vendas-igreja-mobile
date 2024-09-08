@@ -115,7 +115,7 @@ export const TableContainer = styled(ListContent)`
     background-color: #eee;
     overflow: auto;
     border-radius: 8px;
-    height: auto;
+    max-height: 70%;
     width: 95%;
     margin: 0 auto;
     table{
