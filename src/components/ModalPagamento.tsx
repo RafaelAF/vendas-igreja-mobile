@@ -80,7 +80,7 @@ export const ModalPagamento = ({selecao, total, closeAll}: Props) => {
             setTimeout(()=>{
                 payment.setLoad(false)
                 // modaisCtx?.dispatch({})
-            }, 2000)
+            }, 500)
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[payment.pago])
@@ -242,7 +242,7 @@ export const ModalPagamento = ({selecao, total, closeAll}: Props) => {
                         </LabelContent>
                         <LabelContent>
                             <LabelPagamento>Valor Pago</LabelPagamento>
-                            <InputCustom value={valorPago} placeholder="Digite apenas numeros" type="text" onChange={(e)=>{
+                            <InputCustom value={valorPago} placeholder="Digite apenas numeros" type="number" onChange={(e)=>{
                                 setValorPago(e.target.value)
                             }} />
                         </LabelContent>
